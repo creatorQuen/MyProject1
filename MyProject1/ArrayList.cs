@@ -15,6 +15,11 @@ namespace MyProject1
             get
             {
                 // OutOfrangeIndexExcpeption
+                if((index > _array.Length) || (index < 0))
+                {
+                    throw new IndexOutOfRangeException("Индекс не существует.");
+                }
+
                 return _array[index];
             }
 
@@ -23,6 +28,7 @@ namespace MyProject1
                 _array[index] = value; 
             }
         }
+
 
         public ArrayList()
         {
@@ -66,10 +72,49 @@ namespace MyProject1
             {
                 UpSize();
             }
+            
 
-            _array[Length - Length + 1] = value;
+            int[] tmpArr = new int[_array.Length];
+            for(int i = 0; i < _array.Length; i++)
+            {
+                tmpArr[i] = _array[i];
+            }
+
+
+            for (int i = 1; i < _array.Length; i++)
+            {
+                _array[i] = tmpArr[i - 1];
+            }
+
+            _array[0] = value;
+
             Length++;
+
         }
+
+        // Добавление значения по индексу.
+         public void AddNumberByIndex(int index, int value)
+         {
+            if (Length == _array.Length)
+            {
+                UpSize();
+            }
+
+            int[] tmpArr = new int[_array.Length];
+            for (int i = 0; i < _array.Length; i++)
+            {
+                tmpArr[i] = _array[i];
+            }
+
+            _array[index] = value;
+
+            for (int i = index + 1; i < _array.Length; i++)
+            {
+                _array[i] = tmpArr[i - 1];
+            }
+
+            Length++;
+         }
 
         // Удаление из конца одного элемента.
         public void DeleteLastItem(int value)
@@ -82,7 +127,17 @@ namespace MyProject1
 
         }
 
+        public int[] ToArray()
+        {
+            int[] tmpArr = new int[Length];
 
+            for (int i = 0; i < Length; i++)
+            {
+                tmpArr[i] = _array[i];
+            }
+
+            return tmpArr;
+        }
 
 
 
@@ -92,14 +147,14 @@ namespace MyProject1
         {
             ArrayList arrayList = (ArrayList)obj;
 
-            if(this.Length != arrayList.Length)
+            if (this.Length != arrayList.Length)
             {
                 return false;
             }
 
-            for(int i = 0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
-                if(this._array[i] != arrayList._array[i])
+                if (this._array[i] != arrayList._array[i])
                 {
                     return false;
                 }
@@ -108,17 +163,60 @@ namespace MyProject1
             return true;
         }
 
+        //public override bool Equals(object obj)
+        //{
+        //    int[] arrayList = (int[])obj;
+
+        //    if(this.Length != arrayList.Length)
+        //    {
+        //        return false;
+        //    }
+
+        //    for(int i =0; i < Length; i++)
+        //    {
+        //        if(this._array[i] != arrayList[i])
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+
+        //    return true;
+        //}
+
+
+        //public override string ToString()
+        //{
+        //    string s = "";
+
+        //    for(int i =0; i < Length; i++)
+        //    {
+        //        s += _array[i] + " ";
+        //    }
+
+        //    return s;
+        //}
+
+
         public override string ToString()
         {
             string s = "";
 
-            for(int i =0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
-                s += _array[i] + " ";
+                if (i < (Length -1))
+                {
+                    s += " " + _array[i] + ",";
+                }
+                else
+                {
+                    s += " " + _array[i] + " ";
+                }
             }
 
             return s;
         }
+
 
         public override int GetHashCode()
         {

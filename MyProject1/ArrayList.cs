@@ -262,7 +262,7 @@ namespace MyProject1
         }
 
         // Первый индекс по значению.
-        public int GetItemByIndex(int value)
+        public int GetIndexByItem(int value)
         {
             for (int i = 0; i < Length; i++)
             {
@@ -274,6 +274,18 @@ namespace MyProject1
 
             return -1;
         }
+
+        // Изменение по индексу.
+        public void ChangeItemByIdex(int index, int value)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            _array[index] = value;
+        }
+
 
 
         public override bool Equals(object obj)

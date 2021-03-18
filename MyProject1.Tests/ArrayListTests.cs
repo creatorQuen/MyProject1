@@ -142,10 +142,23 @@ namespace MyProject1.Tests
         [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
         [TestCase(1, -1, new int[] { 0, -1 })]
         [TestCase(-1, 1, new int[] { 0, -1, 3, 14 })]
-        public void GetItemByIndexTests(int value, int expected, int[] actualArray)
+        public void GetIndexByItemTests(int value, int expected, int[] actualArray)
         {
             ArrayList arr = new ArrayList(actualArray);
-            int actual = arr.GetItemByIndex(value);
+            int actual = arr.GetIndexByItem(value);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestCase(0, 12, new int[] { 12, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(2, -78, new int[] { 0, -1, -78, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(1, 45, new int[] { 0, 45, 3, 14 }, new int[] { 0, -1, 3, 14 })]
+        public void ChangeItemByIdexTests(int index, int value, int[] expectedArray, int[] actualArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.ChangeItemByIdex(index, value);
 
             Assert.AreEqual(expected, actual);
         }

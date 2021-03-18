@@ -14,10 +14,9 @@ namespace MyProject1
         {
             get
             {
-                // OutOfrangeIndexExcpeption
-                if((index > _array.Length) || (index < 0))
+                if ((index > _array.Length) || (index < 0))
                 {
-                    throw new IndexOutOfRangeException("Индекс не существует.");
+                    throw new IndexOutOfRangeException("Индекс вне множества");
                 }
 
                 return _array[index];
@@ -25,7 +24,7 @@ namespace MyProject1
 
             set
             {
-                _array[index] = value; 
+                _array[index] = value;
             }
         }
 
@@ -145,7 +144,7 @@ namespace MyProject1
             {
                 if (index > Length || index < 0)
                 {
-                    throw new IndexOutOfRangeException("индекс не входит в массив");
+                    throw new IndexOutOfRangeException("Индекс вне множества");
                 }
 
                 for (int i = index; i < Length - 1; i++)
@@ -164,7 +163,7 @@ namespace MyProject1
             {
                 if (index > Length || index < 0)
                 {
-                    throw new IndexOutOfRangeException("индекс не входит в массив");
+                    throw new IndexOutOfRangeException("Индекс вне множества.");
                 }
             }
         }
@@ -174,12 +173,12 @@ namespace MyProject1
         {
             if (items > Length)
             {
-                throw new ArgumentOutOfRangeException("массив меньше количества удаляемых элементов");
+                throw new ArgumentOutOfRangeException("Множество меньше количества удаляемых элементов.");
             }
 
             if (items < 0)
             {
-                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
             }
 
             Length -= items;
@@ -195,12 +194,12 @@ namespace MyProject1
         {
             if (items > Length)
             {
-                throw new ArgumentOutOfRangeException("массив меньше количества удаляемых элементов");
+                throw new ArgumentOutOfRangeException("Множество меньше количества удаляемых элементов.");
             }
 
             if (items < 0)
             {
-                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
             }
 
             if (Length != 0)
@@ -251,7 +250,18 @@ namespace MyProject1
             }
         }
 
+        // Вернуть длину.
+        public int GetByIndex(int index)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
 
+            return _array[index];
+        }
+
+        
 
         public override bool Equals(object obj)
         {

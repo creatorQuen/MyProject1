@@ -56,7 +56,7 @@ namespace MyProject1
         // Добавление значения в конец.
         public void Add(int value)
         {
-            if(Length == _array.Length)
+            if (Length == _array.Length)
             {
                 UpSize();
             }
@@ -65,25 +65,17 @@ namespace MyProject1
             Length++;
         }
 
-        // Добавление значения в начало.
         public void AddNumberAtFront(int value)
         {
             if (Length == _array.Length)
             {
                 UpSize();
             }
-            
 
-            int[] tmpArr = new int[_array.Length];
-            for(int i = 0; i < _array.Length; i++)
+
+            for (int i = _array.Length - 1; i > 0; i--)
             {
-                tmpArr[i] = _array[i];
-            }
-
-
-            for (int i = 1; i < _array.Length; i++)
-            {
-                _array[i] = tmpArr[i - 1];
+                _array[i] = _array[i - 1];
             }
 
             _array[0] = value;
@@ -93,8 +85,8 @@ namespace MyProject1
         }
 
         // Добавление значения по индексу.
-         public void AddNumberByIndex(int index, int value)
-         {
+        public void AddNumberByIndex(int index, int value)
+        {
             if (Length == _array.Length)
             {
                 UpSize();
@@ -114,32 +106,150 @@ namespace MyProject1
             }
 
             Length++;
-         }
+        }
 
         // Удаление из конца одного элемента.
-        public void DeleteLastItem(int value)
+        public void RemoveLastItem()
         {
+            Length--;
+
             if (Length < (_array.Length / 2))
             {
                 DownSize();
             }
-
-
         }
 
-        public int[] ToArray()
+        // Удаление из начала одного элемента.
+        public void RemoveFirstItem()
         {
-            int[] tmpArr = new int[Length];
-
-            for (int i = 0; i < Length; i++)
+            if (Length != 0)
             {
-                tmpArr[i] = _array[i];
+                for (int i = 0; i < _array.Length - 1; i++)
+                {
+                    _array[i] = _array[i + 1];
+                }
+
+                Length--;
+
+                if (Length < (_array.Length / 2))
+                {
+                    DownSize();
+                }
+            }
+        }
+
+        // Удаление по индексу одного элемента.
+        public void RemoveItemByIndex(int index)
+        {
+            if (Length != 0)
+            {
+                if (index > Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException("индекс не входит в массив");
+                }
+
+                for (int i = index; i < Length - 1; i++)
+                {
+                    _array[i] = _array[i + 1];
+                }
+
+                Length--;
+
+                if (Length <= (_array.Length / 2))
+                {
+                    DownSize();
+                }
+            }
+            else
+            {
+                if (index > Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException("индекс не входит в массив");
+                }
+            }
+        }
+
+        // Удаление из конца N элементов.
+        public void RemoveSomeItemsAtLast(int items)
+        {
+            if (items > Length)
+            {
+                throw new ArgumentOutOfRangeException("массив меньше количества удаляемых элементов");
             }
 
-            return tmpArr;
+            if (items < 0)
+            {
+                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+            }
+
+            Length -= items;
+
+            if (Length < (_array.Length / 2))
+            {
+                DownSize();
+            }
         }
 
+        // Удаление из начала N элементов.
+        public void RemoveSomeItemsAtFront(int items)
+        {
+            if (items > Length)
+            {
+                throw new ArgumentOutOfRangeException("массив меньше количества удаляемых элементов");
+            }
 
+            if (items < 0)
+            {
+                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+            }
+
+            if (Length != 0)
+            {
+
+                for (int i = 0; i < Length - items; i++)
+                {
+                    _array[i] = _array[i + items];
+                }
+
+                Length -= items;
+
+                if (Length < (_array.Length / 2))
+                {
+                    DownSize();
+                }
+            }
+        }
+
+        // Удаления по индексу N элементов.
+        public void RemoveByIndexElements(int index, int items)
+        {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("индекс не входит в массив");
+            }
+
+            if (Length - index < items)
+            {
+                throw new IndexOutOfRangeException("длина массива после индекса меньше количества удаляемых элементов");
+            }
+
+            if (items < 0)
+            {
+                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+            }
+
+            for (int i = index; i < Length - items; i++)
+            {
+                _array[i] = _array[i + items];
+            }
+
+            Length -= items;
+
+            if (Length <= (_array.Length / 2))
+            {
+                DownSize();
+            }
+        }
 
 
 
@@ -163,60 +273,17 @@ namespace MyProject1
             return true;
         }
 
-        //public override bool Equals(object obj)
-        //{
-        //    int[] arrayList = (int[])obj;
-
-        //    if(this.Length != arrayList.Length)
-        //    {
-        //        return false;
-        //    }
-
-        //    for(int i =0; i < Length; i++)
-        //    {
-        //        if(this._array[i] != arrayList[i])
-        //        {
-        //            return false;
-        //        }
-        //    }
-
-
-        //    return true;
-        //}
-
-
-        //public override string ToString()
-        //{
-        //    string s = "";
-
-        //    for(int i =0; i < Length; i++)
-        //    {
-        //        s += _array[i] + " ";
-        //    }
-
-        //    return s;
-        //}
-
-
         public override string ToString()
         {
             string s = "";
 
             for (int i = 0; i < Length; i++)
             {
-                if (i < (Length -1))
-                {
-                    s += " " + _array[i] + ",";
-                }
-                else
-                {
-                    s += " " + _array[i] + " ";
-                }
+                s += _array[i] + " ";
             }
 
             return s;
         }
-
 
         public override int GetHashCode()
         {
@@ -229,7 +296,7 @@ namespace MyProject1
 
             int[] tmpArray = new int[newLenght];
 
-            for(int i=0; i < _array.Length; i++)
+            for (int i = 0; i < _array.Length; i++)
             {
                 tmpArray[i] = _array[i];
             }
@@ -240,8 +307,8 @@ namespace MyProject1
 
         private void DownSize()
         {
-            
-            int newLenght = (int)(_array.Length - (_array.Length * 0.33d));
+
+            int newLenght = (int)(_array.Length + 0.67d + 1);
 
             int[] tmpArray = new int[newLenght];
 
@@ -252,6 +319,5 @@ namespace MyProject1
 
             _array = tmpArray;
         }
-        
     }
 }

@@ -139,7 +139,16 @@ namespace MyProject1.Tests
         }
 
 
+        [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
+        [TestCase(1, -1, new int[] { 0, -1 })]
+        [TestCase(-1, 1, new int[] { 0, -1, 3, 14 })]
+        public void GetItemByIndexTests(int value, int expected, int[] actualArray)
+        {
+            ArrayList arr = new ArrayList(actualArray);
+            int actual = arr.GetItemByIndex(value);
 
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }

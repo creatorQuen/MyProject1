@@ -261,7 +261,20 @@ namespace MyProject1
             return _array[index];
         }
 
-        
+        // Первый индекс по значению.
+        public int GetItemByIndex(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if(value == _array[i])
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
 
         public override bool Equals(object obj)
         {

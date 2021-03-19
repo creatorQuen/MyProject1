@@ -437,8 +437,8 @@ namespace MyProject1
             }
         }
 
-        // Удаление по значению первого.
-        public int RemoveFirstByValue(int value)
+        // Удаление по значению первого. (Вернуть индекс)
+        public int RemoveFirstByValueAndGetIndex(int value)
         {
             int result = -1;
 
@@ -470,7 +470,39 @@ namespace MyProject1
             return result;
         }
 
+        // Удаление по значению всех.(Вернуть кол-во)
+        public int RemoveAllByValue(int value)
+        {
+            int result = -1;
+            int count = 0;
 
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    result = i;
+                    for (int j = result; j < Length - 1; j++)
+                    {
+                        _array[j] = _array[j + 1];
+                    }
+                    count++;
+                }
+            }
+
+            Length -= count;
+
+            if (Length < _array.Length / 2 - 1 && Length > 1)
+            {
+                DownSize();
+            }
+
+            if (count == 0)
+            {
+                count = result;
+            }
+
+            return count;
+        }
 
         public override bool Equals(object obj)
         {

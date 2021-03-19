@@ -286,7 +286,32 @@ namespace MyProject1
             _array[index] = value;
         }
 
+        // Реверс(123 -> 321)
+        public void ReverseItems()
+        {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+            // Вопрос про длинну.
+            int[] arrayTmp = new int[Length];
 
+            for (int i = 0; i < Length; i++)
+            {
+                arrayTmp[i] = _array[i];
+            }
+
+            for (int i = 0; i < (arrayTmp.Length / 2); i++)
+            {
+                int index = arrayTmp.Length - i - 1;
+                int tmp = arrayTmp[i];
+
+                arrayTmp[i] = arrayTmp[index];
+                arrayTmp[index] = tmp;
+            }
+
+            _array = arrayTmp;
+        }
 
         public override bool Equals(object obj)
         {

@@ -176,5 +176,19 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+
+        [TestCase(608, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(0, new int[] { 0, -1, 0, -1, 0 })]
+        [TestCase(0, new int[] { 0 })]
+        public void FindMaximumNumberTests(int expected, int[] actualArray)
+        {
+            ArrayList arr = new ArrayList(actualArray);
+            int actual = arr.FindMaximumNumber();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+       
     }
 }

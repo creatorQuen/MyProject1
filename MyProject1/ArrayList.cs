@@ -313,6 +313,30 @@ namespace MyProject1
             _array = arrayTmp;
         }
 
+        // Поиск значения максимального элемента.
+        public int FindMaximumNumber()
+        {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            int maximum = _array[0];
+
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] > maximum)
+                {
+                    maximum = _array[i];
+                }
+            }
+
+            return maximum;
+        }
+
+
+
+
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;

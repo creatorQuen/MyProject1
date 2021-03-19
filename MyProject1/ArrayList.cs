@@ -334,7 +334,27 @@ namespace MyProject1
             return maximum;
         }
 
+        // Поиск значения минимального элемента.
+        public int FindMinimumNumber()
+        {
 
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            int minimum = _array[0];
+
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] < minimum)
+                {
+                    minimum = _array[i];
+                }
+            }
+
+            return minimum;
+        }
 
 
         public override bool Equals(object obj)

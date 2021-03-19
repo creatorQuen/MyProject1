@@ -398,7 +398,6 @@ namespace MyProject1
             return numberIndex;
         }
 
-
         // Сортировка по возрастанию.
         public void BubleSortNumberUp()
         {
@@ -437,6 +436,41 @@ namespace MyProject1
                 }
             }
         }
+
+        // Удаление по значению первого.
+        public int RemoveFirstByValue(int value)
+        {
+            int result = -1;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    result = i;
+                    break;
+                }
+            }
+
+            if (result != -1)
+            {
+                for (int i = result; i < Length - 1; i++)
+                {
+                    _array[i] = _array[i + 1];
+                }
+
+                Length--;
+            }
+
+            
+            if (Length < _array.Length / 2 - 1 && Length > 1)
+            {
+                DownSize();
+            }
+
+            return result;
+        }
+
+
 
         public override bool Equals(object obj)
         {

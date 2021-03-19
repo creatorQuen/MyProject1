@@ -250,5 +250,21 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+
+        [TestCase(0, 0, new int[] { -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, -1, new int[] { 0, -1, 14, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(14, 3, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        public void RemoveFirstByValueTests(int value, int expectedIndex ,int[] expectedArray, int[] actualArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList arrActual = new ArrayList(actualArray);
+            int actual = arrActual.RemoveFirstByValue(value);
+
+            Assert.AreEqual(expected, arrActual);
+            Assert.AreEqual(expectedIndex, actual);
+        }
+
+
+
     }
 }

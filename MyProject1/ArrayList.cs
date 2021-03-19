@@ -356,6 +356,48 @@ namespace MyProject1
             return minimum;
         }
 
+        // Поиск индекс максимального элемента.
+        public int FindIndexOfMaximumNumber()
+        {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            int numberIndex = 0;
+
+            for (int i = 1; i < _array.Length; i++)
+            {
+                if (_array[i] > _array[numberIndex])
+                {
+                    numberIndex = i;
+                }
+            }
+
+            return numberIndex;
+        }
+
+        // Поиск индекс минимального элемента.
+        public int FindIndexOfMinimumNumber()
+        {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            int numberIndex = 0;
+
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] < _array[numberIndex])
+                {
+                    numberIndex = i;
+                }
+            }
+
+            return numberIndex;
+        }
+
 
         public override bool Equals(object obj)
         {

@@ -421,6 +421,23 @@ namespace MyProject1
             }
         }
 
+        // Сортировка по убыванию.
+        public void BubleSortNumberDown()
+        {
+            for (int j = 0; j < Length; j++)
+            {
+                for (int i = 0; i < Length - 1; i++)
+                {
+                    if (_array[i] < _array[i + 1])
+                    {
+                        int tmp = _array[i];
+                        _array[i] = _array[i + 1];
+                        _array[i + 1] = tmp;
+                    }
+                }
+            }
+        }
+
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;

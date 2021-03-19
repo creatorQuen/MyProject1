@@ -236,5 +236,19 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestCase(new int[] { 608, 77, 66, 3, 0, -1 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 14, 8, 3, 0, -1 }, new int[] { 0, -1, 8, 14, 3 })]
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        public void BubleSortNumberDownTests(int[] expectedArray, int[] actualArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.BubleSortNumberDown();
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

@@ -86,27 +86,20 @@ namespace MyProject1
         // Добавление значения по индексу.
         public void AddNumberByIndex(int index, int value)
         {
-            if (Length == _array.Length)
+            if ((index < 0) || (index > Length))
             {
-                UpSize();
+                throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
-            int[] tmpArr = new int[_array.Length];
-            for (int i = 0; i < _array.Length; i++)
+            int oldLenght = Length;
+            Length++;
+
+            for (int i = oldLenght -1; i >= index; i--)
             {
-                tmpArr[i] = _array[i];
+                _array[i + 1] = _array[i];
             }
 
             _array[index] = value;
-
-            for (int i = index + 1; i < _array.Length; i++)
-            {
-                _array[i] = tmpArr[i - 1];
-            }
-
-
-
-            Length++;
         }
 
         // Удаление из конца одного элемента.

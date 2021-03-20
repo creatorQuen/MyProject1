@@ -104,6 +104,8 @@ namespace MyProject1
                 _array[i] = tmpArr[i - 1];
             }
 
+
+
             Length++;
         }
 
@@ -528,9 +530,23 @@ namespace MyProject1
             }
         }
 
-        
+        // Добавление списка в начало.
+        public void AddArrayAtFront(int[] arr)
+        {
+            for(int i = arr.Length - 1; i >= 0; i--)
+            {
+                AddNumberAtFront(arr[i]);
+            }
+        }
+
+        // Добавление списка по индексу.
         public void AddArrayByIndex(int index, int[] arr)
         {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
             int oldLenght = Length;
             Length += arr.Length;
 

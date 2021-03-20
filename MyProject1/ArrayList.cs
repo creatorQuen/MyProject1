@@ -423,6 +423,11 @@ namespace MyProject1
         // Сортировка по убыванию.
         public void BubleSortNumberDown()
         {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             for (int j = 0; j < Length; j++)
             {
                 for (int i = 0; i < Length - 1; i++)
@@ -440,6 +445,11 @@ namespace MyProject1
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
         {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             int result = -1;
 
             for (int i = 0; i < Length; i++)
@@ -473,6 +483,11 @@ namespace MyProject1
         // Удаление по значению всех.(Вернуть кол-во)
         public int RemoveAllByValue(int value)
         {
+            if (_array.Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             int result = -1;
             int count = 0;
 
@@ -503,6 +518,35 @@ namespace MyProject1
 
             return count;
         }
+
+        // Добавление списка(вашего самодельного) в конец.
+        public void AddArrayAtLast(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Add(arr[i]);
+            }
+        }
+
+        
+        public void AddArrayByIndex(int index, int[] arr)
+        {
+            int oldLenght = Length;
+            Length += arr.Length;
+
+            UpSize(arr); // перегрузка
+
+            for(int i = oldLenght; i >= index; i--)
+            {
+                _array[i + arr.Length] = _array[i];
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                _array[i + index] = arr[i];
+            }
+        }
+
 
         public override bool Equals(object obj)
         {
@@ -554,6 +598,20 @@ namespace MyProject1
 
             _array = tmpArray;
 
+        }
+
+        private void UpSize(int[] arr)
+        {
+            int newLenght = (int)(_array.Length * 1.33d + 1 + arr.Length);
+
+            int[] tmpArray = new int[newLenght];
+
+            for (int i = 0; i < _array.Length; i++)
+            {
+                tmpArray[i] = _array[i];
+            }
+
+            _array = tmpArray;
         }
 
         private void DownSize()

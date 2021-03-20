@@ -278,5 +278,27 @@ namespace MyProject1.Tests
             Assert.AreEqual(expectedValue, actual);
         }
 
+
+        //[TestCase(new int[] { 54, 55, 55}, new int[] { 0, -1, 3, 66, 77, 608, 54, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        //public void AddArrayAtLastTests(int[] arr, int[] expectedArray, int[] actualArray)
+        //{
+        //    ArrayList expected = new ArrayList(expectedArray);
+        //    ArrayList actual = new ArrayList(actualArray);
+        //    actual.AddArrayAtLast(arr);
+
+        //    Assert.AreEqual(expected, actual);
+        //}
+
+
+        [TestCase(2, new int[] { 55, 55, 55 }, new int[] { 0, -1, 55, 55, 55, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, new int[] { 55, 55, 55 }, new int[] { 0, 55, 55, 55, 9 }, new int[] { 0, 9})]
+        public void AddArrayByIndexTests(int index, int[] arr, int[] expectedArray, int[] actualArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.AddArrayByIndex(index, arr);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

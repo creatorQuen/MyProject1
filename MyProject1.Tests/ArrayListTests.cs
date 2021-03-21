@@ -221,6 +221,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(100)]
+        public void GetByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int index)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.GetByIndex(index));
+        }
+
 
 
         [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace MyProject1.Tests
 {
@@ -43,6 +44,15 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(-1, 56)]
+        [TestCase(100, 12)]
+        public void AddNumberByIndex_UserIndexOutOfRage_ShouldIndexOutOfRangeException(int index, int value)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.AddNumberByIndex(index, value));
+        }
+
 
         [TestCase(new int[] { -78, 0, -1 }, new int[] { -78, 0, -1, 3 })]
         [TestCase(new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
@@ -84,6 +94,15 @@ namespace MyProject1.Tests
             actual.RemoveItemByIndex(index);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(-1)]
+        [TestCase(100)]
+        public void RemoveItemByIndex_UserIndexOutOfRage_ShouldIndexOutOfRangeException(int index)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveItemByIndex(index));
         }
 
 

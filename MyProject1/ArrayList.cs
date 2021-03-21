@@ -71,7 +71,6 @@ namespace MyProject1
                 UpSize();
             }
 
-
             for (int i = _array.Length - 1; i > 0; i--)
             {
                 _array[i] = _array[i - 1];

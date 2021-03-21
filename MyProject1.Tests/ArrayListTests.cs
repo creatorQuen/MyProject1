@@ -184,6 +184,30 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(100, 2)]
+        public void RemoveByIndexElements_IndexOutOfRange_ShouldIndexOutOfRangeException(int index, int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
+        [TestCase(3, 7)]
+        public void RemoveByIndexElements_ItemsAfterIndexMoreThanLength_ShouldIndexOutOfRangeException(int index, int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
+        [TestCase(1, -2)]
+        public void RemoveByIndexElements_ItemsNegativeQuantity_ShouldArgumentException(int index, int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
 
 
         [TestCase(0, 0,new int[] { 0, -1, 3, 66, 77, 608 })]

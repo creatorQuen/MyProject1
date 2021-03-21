@@ -138,7 +138,7 @@ namespace MyProject1
             {
                 if (index > Length || index < 0)
                 {
-                    throw new IndexOutOfRangeException("Индекс вне множества");
+                    throw new IndexOutOfRangeException("Индекс вне множества.");
                 }
 
                 for (int i = index; i < Length - 1; i++)
@@ -218,17 +218,17 @@ namespace MyProject1
         {
             if (index > Length || index < 0)
             {
-                throw new IndexOutOfRangeException("индекс не входит в массив");
+                throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
             if (Length - index < items)
             {
-                throw new IndexOutOfRangeException("длина массива после индекса меньше количества удаляемых элементов");
+                throw new IndexOutOfRangeException("Длина множества после индекса меньше количества удаляемых элементов.");
             }
 
             if (items < 0)
             {
-                throw new ArgumentException("нельзя удалить отрицательное количество элементов");
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
             }
 
             for (int i = index; i < Length - items; i++)

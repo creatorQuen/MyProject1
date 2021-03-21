@@ -18,6 +18,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(-78, new int[] { -78, 0, -1, 3 }, new int[] { 0, -1, 3 })]
         [TestCase(14, new int[] { 14, 0, -1, 3 }, new int[] { 0, -1, 3 })]
         [TestCase(0, new int[] { 0 }, new int[] { })]
@@ -29,6 +30,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(0, -78, new int[] { -78, 0, -1, 3 }, new int[] { 0, -1, 3 })]
@@ -54,6 +56,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(new int[] { -78, 0, -1 }, new int[] { -78, 0, -1, 3 })]
         [TestCase(new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
@@ -66,6 +69,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
@@ -81,6 +85,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(0, new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
@@ -104,6 +109,7 @@ namespace MyProject1.Tests
 
             Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveItemByIndex(index));
         }
+
 
 
         [TestCase(0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3 })]
@@ -135,6 +141,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(0, new int[] { 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(1, new int[] { -1, 14, 3 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(3, new int[] { 14 }, new int[] { 0, -1, 3, 14 })]
@@ -146,6 +153,23 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(100)]
+        public void RemoveSomeItemsAtFront_ItemsLargeThanSizeArray_ShouldArgumentOutOfRangeException(int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => expected.RemoveSomeItemsAtFront(items));
+        }
+
+        [TestCase(-2)]
+        public void RemoveSomeItemsAtFront_ItemsNegativeQuantity_ShouldArgumentException(int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtFront(items));
+        }
+
 
 
         [TestCase(0, 0, new int[] { 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -161,6 +185,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(0, 0,new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(1, -1, new int[] { 0, -1 })]
         [TestCase(3, 14, new int[] { 0, -1, 3, 14 })]
@@ -173,6 +198,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
         [TestCase(1, -1, new int[] { 0, -1 })]
         [TestCase(-1, 1, new int[] { 0, -1, 3, 14 })]
@@ -183,6 +209,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(0, 12, new int[] { 12, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -198,6 +225,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(new int[] { 608, 77, 66, 3, -1, 0 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase( new int[] { 3, 14, 8, -1, 0 }, new int[] { 0, -1, 8, 14, 3 })]
         [TestCase(new int[] { 0 }, new int[] { 0 })]
@@ -209,6 +237,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(608, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -223,6 +252,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(-12, new int[] { 0, -12, 3, 66, 77, 608 })]
         [TestCase(-1, new int[] { 0, -1, 0, -1, 0 })]
         [TestCase(0, new int[] { 0 })]
@@ -233,6 +263,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(5, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -247,6 +278,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(1, new int[] { 0, -12, 3, 66, 77, 608 })]
         [TestCase(1, new int[] { 0, -1, 0, -1, 0 })]
         [TestCase(0, new int[] { 0 })]
@@ -259,10 +291,11 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(new int[] { -1, 0, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(new int[] { -1, 0, 3, 8, 14 }, new int[] { 0, -1, 8, 14, 3 })]
         [TestCase(new int[] { 0 }, new int[] { 0 })]
-        public void BubleSortNumberUpTests(int[] expectedArray, int[] actualArray)
+        public void BubbleSortNumberUpTests(int[] expectedArray, int[] actualArray)
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
@@ -272,10 +305,11 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(new int[] { 608, 77, 66, 3, 0, -1 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(new int[] { 14, 8, 3, 0, -1 }, new int[] { 0, -1, 8, 14, 3 })]
         [TestCase(new int[] { 0 }, new int[] { 0 })]
-        public void BubleSortNumberDownTests(int[] expectedArray, int[] actualArray)
+        public void BublbeSortNumberDownTests(int[] expectedArray, int[] actualArray)
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
@@ -283,6 +317,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(0, 0, new int[] { -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -293,10 +328,11 @@ namespace MyProject1.Tests
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList arrActual = new ArrayList(actualArray);
             int actual = arrActual.RemoveFirstByValueAndGetIndex(value);
-            // вопрос
+            
             Assert.AreEqual(expected, arrActual);
             Assert.AreEqual(expectedIndex, actual);
         }
+
 
 
         [TestCase(3, 1, new int[] { 0, -1, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -313,6 +349,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(new int[] { 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608, 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(new int[] { 55, 55, 55 }, new int[] { -1, 55, 55, 55 }, new int[] { -1 })]
         [TestCase(new int[] { 55, 55, 55 }, new int[] { 55, 55, 55 }, new int[] { })]
@@ -324,6 +361,7 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
 
 
         [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11, 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -339,6 +377,7 @@ namespace MyProject1.Tests
         }
 
 
+
         [TestCase(2, new int[] { 55, 55, 55 }, new int[] { 0, -1, 55, 55, 55, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(1, new int[] { 55, 55, 55 }, new int[] { 0, 55, 55, 55, 9 }, new int[] { 0, 9})]
         [TestCase(0, new int[] { 55, 55, 55 }, new int[] { 55, 55, 55 }, new int[] { })]
@@ -350,5 +389,8 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+
     }
 }

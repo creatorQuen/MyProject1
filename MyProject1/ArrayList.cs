@@ -55,30 +55,12 @@ namespace MyProject1
         // Добавление значения в конец.
         public void Add(int value)
         {
-            if (Length == _array.Length)
-            {
-                UpSize();
-            }
-
-            _array[Length] = value;
-            Length++;
+            AddNumberByIndex(Length, value);
         }
 
         public void AddNumberAtFront(int value)
         {
-            if (Length == _array.Length)
-            {
-                UpSize();
-            }
-
-            for (int i = _array.Length - 1; i > 0; i--)
-            {
-                _array[i] = _array[i - 1];
-            }
-
-            _array[0] = value;
-
-            Length++;
+            AddNumberByIndex(0, value);
 
         }
 
@@ -93,7 +75,7 @@ namespace MyProject1
             int oldLenght = Length;
             Length++;
 
-            for (int i = oldLenght -1; i >= index; i--)
+            for (int i = oldLenght - 1; i >= index; i--)
             {
                 _array[i + 1] = _array[i];
             }
@@ -516,19 +498,13 @@ namespace MyProject1
         // Добавление списка(вашего самодельного) в конец.
         public void AddArrayAtLast(int[] arr)
         {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Add(arr[i]);
-            }
+            AddArrayByIndex(Length, arr);
         }
 
         // Добавление списка в начало.
         public void AddArrayAtFront(int[] arr)
         {
-            for(int i = arr.Length - 1; i >= 0; i--)
-            {
-                AddNumberAtFront(arr[i]);
-            }
+            AddArrayByIndex(0, arr);
         }
 
         // Добавление списка по индексу.

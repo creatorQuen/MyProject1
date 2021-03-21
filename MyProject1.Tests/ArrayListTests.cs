@@ -106,7 +106,6 @@ namespace MyProject1.Tests
         }
 
 
-        // [TestCase(0, new int[] { }, new int[] { 33 })]
         [TestCase(0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3 })]
         [TestCase(1, new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(3, new int[] { 0 }, new int[] { 0, -1, 3, 14 })]
@@ -117,6 +116,22 @@ namespace MyProject1.Tests
             actual.RemoveSomeItemsAtLast(items);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(100)]
+        public void RemoveSomeItemsAtLast_ItemsLargeThanSizeArray_ShouldArgumentOutOfRangeException(int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => expected.RemoveSomeItemsAtLast(items));
+        }
+
+        [TestCase(-2)]
+        public void RemoveSomeItemsAtLast_ItemsNegativeQuantity_ShouldArgumentException(int items)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtLast(items));
         }
 
 

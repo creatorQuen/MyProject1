@@ -283,7 +283,7 @@ namespace MyProject1
         // Реверс(123 -> 321)
         public void ReverseItems()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множество.");
             }
@@ -393,7 +393,7 @@ namespace MyProject1
         }
 
         // Сортировка по возрастанию.
-        public void BubleSortNumberUp()
+        public void BubbleSortNumberUp()
         {
             if (_array.Length == 0)
             {
@@ -415,7 +415,7 @@ namespace MyProject1
         }
 
         // Сортировка по убыванию.
-        public void BubleSortNumberDown()
+        public void BubbleSortNumberDown()
         {
             if (_array.Length == 0)
             {

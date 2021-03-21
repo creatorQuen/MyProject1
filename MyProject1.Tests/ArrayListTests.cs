@@ -278,6 +278,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase()]
+        public void ReverseItems_EmptyArray_ShouldArgumentException()
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.ReverseItems());
+        }
+
 
 
         [TestCase(608, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -339,7 +347,7 @@ namespace MyProject1.Tests
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.BubleSortNumberUp();
+            actual.BubbleSortNumberUp();
 
             Assert.AreEqual(expected, actual);
         }
@@ -353,7 +361,7 @@ namespace MyProject1.Tests
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.BubleSortNumberDown();
+            actual.BubbleSortNumberDown();
 
             Assert.AreEqual(expected, actual);
         }

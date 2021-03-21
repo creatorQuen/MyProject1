@@ -384,6 +384,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase()]
+        public void BubbleSortNumberUp_EmptyArray_ShouldArgumentException()
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.BubbleSortNumberUp());
+        }
+
 
 
         [TestCase(new int[] { 608, 77, 66, 3, 0, -1 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -396,6 +404,14 @@ namespace MyProject1.Tests
             actual.BubbleSortNumberDown();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase()]
+        public void BubbleSortNumberDown_EmptyArray_ShouldArgumentException()
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.BubbleSortNumberDown());
         }
 
 

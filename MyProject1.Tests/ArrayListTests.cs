@@ -429,6 +429,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expectedIndex, actual);
         }
 
+        [TestCase(1)]
+        public void RemoveFirstByValueAndGetIndex_EmptyArray_ShouldArgumentException(int value)
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveFirstByValueAndGetIndex(value));
+        }
+
 
 
         [TestCase(3, 1, new int[] { 0, -1, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -442,6 +450,14 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, arrActual);
             Assert.AreEqual(expectedValue, actual);
+        }
+
+        [TestCase(1)]
+        public void RemoveAllByValue_EmptyArray_ShouldArgumentException(int value)
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveAllByValue(value));
         }
 
 

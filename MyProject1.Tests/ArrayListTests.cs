@@ -502,6 +502,13 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(100, new int[] { 55, 55, 55 })]
+        public void AddArrayByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int value, int[] arr)
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.AddArrayByIndex(value, arr));
+        }
 
 
     }

@@ -270,7 +270,7 @@ namespace MyProject1
         }
 
         // Изменение по индексу.
-        public void ChangeItemByIdex(int index, int value)
+        public void ChangeItemByIndex(int index, int value)
         {
             if ((index < 0) || (index > Length))
             {

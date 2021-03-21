@@ -247,13 +247,21 @@ namespace MyProject1.Tests
         [TestCase(0, 12, new int[] { 12, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(2, -78, new int[] { 0, -1, -78, 3 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(1, 45, new int[] { 0, 45, 3, 14 }, new int[] { 0, -1, 3, 14 })]
-        public void ChangeItemByIdexTests(int index, int value, int[] expectedArray, int[] actualArray)
+        public void ChangeItemByIndexTests(int index, int value, int[] expectedArray, int[] actualArray)
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.ChangeItemByIdex(index, value);
+            actual.ChangeItemByIndex(index, value);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(100, 34)]
+        public void ChangeItemByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int index, int value)
+        {
+            ArrayList expected = new ArrayList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.ChangeItemByIndex(index, value));
         }
 
 

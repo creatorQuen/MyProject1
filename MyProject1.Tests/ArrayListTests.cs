@@ -341,6 +341,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase()]
+        public void FindIndexOfMaximumNumber_EmptyArray_ShouldArgumentException()
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.FindIndexOfMaximumNumber());
+        }
+
 
 
         [TestCase(1, new int[] { 0, -12, 3, 66, 77, 608 })]
@@ -352,6 +360,14 @@ namespace MyProject1.Tests
             int actual = arr.FindIndexOfMinimumNumber();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase()]
+        public void FindIndexOfMinimumNumber_EmptyArray_ShouldArgumentException()
+        {
+            ArrayList expected = new ArrayList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.FindIndexOfMinimumNumber());
         }
 
 

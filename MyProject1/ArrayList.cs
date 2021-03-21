@@ -310,7 +310,7 @@ namespace MyProject1
         // Поиск значения максимального элемента.
         public int FindMaximumNumber()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -332,7 +332,7 @@ namespace MyProject1
         public int FindMinimumNumber()
         {
 
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -353,7 +353,7 @@ namespace MyProject1
         // Поиск индекс максимального элемента.
         public int FindIndexOfMaximumNumber()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -374,7 +374,7 @@ namespace MyProject1
         // Поиск индекс минимального элемента.
         public int FindIndexOfMinimumNumber()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -395,7 +395,7 @@ namespace MyProject1
         // Сортировка по возрастанию.
         public void BubbleSortNumberUp()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -417,7 +417,7 @@ namespace MyProject1
         // Сортировка по убыванию.
         public void BubbleSortNumberDown()
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -439,7 +439,7 @@ namespace MyProject1
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -477,7 +477,7 @@ namespace MyProject1
         // Удаление по значению всех.(Вернуть кол-во)
         public int RemoveAllByValue(int value)
         {
-            if (_array.Length == 0)
+            if (Length == 0)
             {
                 throw new ArgumentException("Пустое множества.");
             }
@@ -542,7 +542,7 @@ namespace MyProject1
             int oldLenght = Length;
             Length += arr.Length;
 
-            UpSize(arr); // перегрузка
+            UpSize(arr);
 
             for(int i = oldLenght; i >= index; i--)
             {

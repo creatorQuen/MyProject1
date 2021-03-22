@@ -438,7 +438,7 @@ namespace MyProject1.Tests
         }
 
 
-        //согласен, спасибо за подсказку
+        
         [TestCase(3, 1, new int[] { 0, -1, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(0, 2, new int[] { -1, 3 }, new int[] { 0, -1, 0, 3 })]
         [TestCase(14, 0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3})]

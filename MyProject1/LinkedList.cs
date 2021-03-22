@@ -72,7 +72,7 @@ namespace MyProject1
 
             if(values is null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("На данное множество нет ссылки.");
             }
 
             Length = values.Length;
@@ -95,20 +95,42 @@ namespace MyProject1
                 _tail = null;
             }
 
-
-
-
         }
 
-
+        // Добавление значения в начало.
         public void Add(int value)
         {
+            Node node = new Node(value);
+
             Length++;
-            _tail.Next = new Node(value);
+
+            _tail.Next = node;
+
             _tail = _tail.Next;
+
         }
 
-        public void RemoveFirst()
+        // Добавление значения в начало.
+        public void AddNumberAtFront(int value)
+        {
+            Length++;
+
+            Node node = new Node(value);
+
+            node.Next = _root;
+            _root = node;
+
+        }
+
+        // Добавление значения по индексу.
+        public void AddNumberByIndex(int index, int value)
+        {
+            Length++;
+
+        }
+
+        // Удаление из конца одного элемента.
+        public void RemoveFirstItem()
         {
             _root = _root.Next;
         }

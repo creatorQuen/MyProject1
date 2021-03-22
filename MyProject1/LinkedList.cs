@@ -105,7 +105,6 @@ namespace MyProject1
             Length++;
 
             _tail.Next = node;
-
             _tail = _tail.Next;
 
         }
@@ -125,7 +124,30 @@ namespace MyProject1
         // Добавление значения по индексу.
         public void AddNumberByIndex(int index, int value)
         {
-            Length++;
+            if(index < 0)
+            {
+                throw new IndexOutOfRangeException("Не существует отрицательного индекса");
+            }
+
+            if(index == 0)
+            {
+                AddNumberAtFront(value);
+            }
+            else
+            {
+                Length++;
+
+                Node node = new Node(value);
+                Node current = _root;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    current = current.Next;
+                }
+
+                node.Next = current.Next;
+                current.Next = node;
+            }
 
         }
 
@@ -133,6 +155,7 @@ namespace MyProject1
         public void RemoveFirstItem()
         {
             _root = _root.Next;
+            Length--;
         }
 
         public void RemoveByIndex(int index)
@@ -158,7 +181,7 @@ namespace MyProject1
             {
                 Node current = _root;
 
-                string s = current.Value + "";
+                string s = current.Value + " ";
 
                 // смотрит на следущшийц желемент
                 while (!(current.Next is null))
@@ -202,6 +225,9 @@ namespace MyProject1
             return true;
         }
 
-
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

@@ -33,11 +33,27 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(0, -78, new int[] { -78, 0, -1, 3 }, new int[] { 0, -1, 3 })]
+        [TestCase(2, 14, new int[] { 0, -1, 14, 3 }, new int[] { 0, -1, 3 })]
+        [TestCase(3, 14, new int[] { 0, -1, 3, 14 }, new int[] { 0, -1, 3 })]
+        [TestCase(1, 14, new int[] { 0, 14 }, new int[] { 0 })]
+        //[TestCase(0, 33, new int[] { 33 }, new int[] { })]
+        public void AddNumberByIndexTests(int index, int value, int[] expectedArray, int[] actualArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.AddNumberByIndex(index, value);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
         [TestCase(new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
         [TestCase(new int[] { -1, 14, 3 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(new int[] { -1, 3, 14 }, new int[] { 0, -1, 3, 14 })]
-        [TestCase(new int[] { }, new int[] { 33 })]
-        [TestCase(new int[] { }, new int[] { })]
+        //[TestCase(new int[] { }, new int[] { 33 })]
+        //[TestCase(new int[] { }, new int[] { })]
         public void RemoveFirstItemTests(int[] expectedArray, int[] actualArray)
         {
             LinkedList expected = new LinkedList(expectedArray);

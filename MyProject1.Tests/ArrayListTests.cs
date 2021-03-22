@@ -438,10 +438,11 @@ namespace MyProject1.Tests
         }
 
 
-
+        //согласен, спасибо за подсказку
         [TestCase(3, 1, new int[] { 0, -1, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(0, 2, new int[] { -1, 3 }, new int[] { 0, -1, 0, 3 })]
-        [TestCase(14, -1, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3})]
+        [TestCase(14, 0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3})]
+        [TestCase(5, 4, new int[] { 3, 4, 6, 7 }, new int[] { 3, 4, 5, 5, 5, 5, 6, 7 })]
         public void RemoveAllByValueTests(int value, int expectedValue, int[] expectedArray, int[] actualArray)
         {
             ArrayList expected = new ArrayList(expectedArray);

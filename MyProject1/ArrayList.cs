@@ -464,15 +464,13 @@ namespace MyProject1
                 throw new ArgumentException("Пустое множества.");
             }
 
-            int result = -1;
             int count = 0;
 
-            for (int i = 0; i < Length; i++)
+            for (int i = Length - 1; i >= 0; i--)
             {
                 if (_array[i] == value)
                 {
-                    result = i;
-                    for (int j = result; j < Length - 1; j++)
+                    for (int j = i; j < Length; j++)
                     {
                         _array[j] = _array[j + 1];
                     }
@@ -486,13 +484,9 @@ namespace MyProject1
             {
                 DownSize();
             }
-
-            if (count == 0)
-            {
-                count = result;
-            }
-
+            
             return count;
+
         }
 
         // Добавление списка(вашего самодельного) в конец.

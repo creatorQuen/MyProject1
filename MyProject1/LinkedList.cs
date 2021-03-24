@@ -362,8 +362,6 @@ namespace MyProject1
             current.Value = value;
         }
 
-
-
         // Реверс
         public void ReverseItems()
         {
@@ -376,6 +374,32 @@ namespace MyProject1
 
             }
 
+        }
+
+        // Поиск значения максимального элемента.
+        public int FindMaximumNumber()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            Node node = new Node(0);
+
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if(node.Value < current.Value)
+                {
+                    node.Value = current.Value;
+                    
+                }
+
+                current = current.Next;
+            }
+
+            return node.Value;
         }
 
 

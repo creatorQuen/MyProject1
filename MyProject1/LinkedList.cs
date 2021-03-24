@@ -92,21 +92,28 @@ namespace MyProject1
             else
             {
                 _root = null;
-                _tail = null;
+                _tail = _root;
             }
 
         }
 
-        // Добавление значения в начало.
+        // Добавление значения в конец.
         public void Add(int value)
         {
             Node node = new Node(value);
 
+            if (Length == 0)
+            {
+                _root = node;
+                _tail = _root;
+            }
+            else
+            {
+                _tail.Next = node;
+                _tail = _tail.Next;
+            }
+
             Length++;
-
-            _tail.Next = node;
-            _tail = _tail.Next;
-
         }
 
         // Добавление значения в начало.
@@ -118,7 +125,6 @@ namespace MyProject1
 
             node.Next = _root;
             _root = node;
-
         }
 
         // Добавление значения по индексу.
@@ -129,35 +135,73 @@ namespace MyProject1
                 throw new IndexOutOfRangeException("Не существует отрицательного индекса");
             }
 
-            if(index == 0)
+            if (index == 0)
             {
                 AddNumberAtFront(value);
             }
-            else
+            else if (index != Length)
             {
                 Length++;
 
-                Node node = new Node(value);
                 Node current = _root;
 
-                for (int i = 0; i < index - 1; i++)
+                for (int i = 1; i < index; i++)
                 {
                     current = current.Next;
                 }
 
+                Node node = new Node(value);
+
                 node.Next = current.Next;
                 current.Next = node;
+            }
+            else
+            {
+                Add(value);
             }
 
         }
 
         // Удаление из конца одного элемента.
+        public void RemoveLastItem()
+        {
+            //if()
+            //{
+            //    _tail = _root;
+            //    _root = _tail;
+            //}
+            //else
+            //{
+            //    Length--;
+            //}
+
+
+            Node current  = _root;
+
+            while (!(current.Next is null))
+            {
+                current = current.Next;
+            }
+
+            _tail = current;
+            Length--;
+
+        }
+
+
+        // Удаление из начала одного элемента.
         public void RemoveFirstItem()
         {
+            if(_root == null)
+            {
+                throw new NullReferenceException("Нет ссылки на лист.");
+            }
+
             _root = _root.Next;
             Length--;
         }
 
+        // Деление по индексу одного элемента
         public void RemoveByIndex(int index)
         {
             Node current = _root;
@@ -172,8 +216,129 @@ namespace MyProject1
             Length--;
         }
 
+        // Удаление из конца N элементов.
+        public void RemoveSomeItemsAtLast(int items)
+        {
+            if (Length > 1)
+            {
+                Node current = _root;
 
-        public  override string ToString()
+                for (int i = 0; i < Length - items; i++)
+                {
+                    current = current.Next;
+                }
+
+                current = _tail;
+                Length -= items;
+            }
+            else
+            {
+                this._root = null;
+                this._tail = null;
+                Length = 0;
+            }
+        }
+
+        // Удаление из начала N элементов.
+        public void RemoveSomeItemsAtFront(int items)
+        {
+            if (items == 1)
+            {
+                RemoveFirstItem();
+            }
+            else if (Length - 1 == items)
+            {
+                for (int i = 0; i < items; i++)
+                {
+                    RemoveFirstItem();
+                }
+            }
+            else
+            {
+                Node current = _root;
+
+                for (int i = 0; i < Length - items; i++)
+                {
+                    current = current.Next;
+                }
+
+                current = _root;
+
+                Length -= items;
+            }
+
+        }
+
+        // Удаления по индексу N элементов.
+        public void RemoveByIndexElements(int index, int items)
+        {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            if (Length - index < items)
+            {
+                throw new IndexOutOfRangeException("Длина множества после индекса меньше количества удаляемых элементов.");
+            }
+
+            if (items < 0)
+            {
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
+            }
+
+
+            if(items != 0)
+            {
+                Node tmpNext = _root;
+
+                for (int i = 0; i < index + items; i++)
+                {
+                    tmpNext = tmpNext.Next;
+                }
+
+                Node currtent = _root;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    currtent = currtent.Next;
+                }
+
+                currtent.Next = tmpNext;
+
+                Length -= items;
+            }
+            
+        }
+
+
+        // Реверс
+        public void ReverseItems()
+        {
+
+            if(Length != 1)
+            {
+                Node current = _root;
+                
+                Node tmp = null;
+
+                while(!(_root is null))
+                {
+                    for (int i = 0; i < Length; i++)
+                    {
+                        current = current.Next;
+                    }
+                }
+
+
+
+
+            }
+
+        }
+
+
+        public override string ToString()
         {
             // возращаем пустую строку
 
@@ -210,17 +375,42 @@ namespace MyProject1
             Node currentThis = this._root;
             Node currentList = list._root;
             // byltrc out of range первое или последнее. 
-            do
+            
+            if(this.Length == 0 && list.Length == 0)
+            {
+                return true;
+            }
+
+
+            while (!(currentThis.Next is null))
             {
                 if (currentThis.Value != currentList.Value)
                 {
                     return false;
                 }
-
                 currentList = currentList.Next;
                 currentThis = currentThis.Next;
             }
-            while (!(currentThis.Next is null));
+
+            //do
+            //{
+            //    if (currentThis.Value != currentList.Value)
+            //    {
+            //        return false;
+            //    }
+
+
+            //    currentList = currentList.Next;
+            //    currentThis = currentThis.Next;
+            //}
+            //while (!(currentThis.Next is null));
+
+
+
+            if (currentList.Value != currentThis.Value)
+            {
+                return false;
+            }
 
             return true;
         }

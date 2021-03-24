@@ -82,6 +82,21 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(0, new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
+        [TestCase(1, new int[] { 0, 14, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(3, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(0, new int[] { }, new int[] { 33 })]
+        public void RemoveByIndexTests(int index, int[] expectedArray, int[] actualArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.RemoveByIndex(index);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
         [TestCase(0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3 })]
         [TestCase(1, new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(3, new int[] { 0 }, new int[] { 0, -1, 3, 14 })]

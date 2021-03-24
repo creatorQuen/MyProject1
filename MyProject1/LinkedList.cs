@@ -186,16 +186,7 @@ namespace MyProject1
         // Удаление по индексу одного элемента
         public void RemoveByIndex(int index)
         {
-            Node current = _root;
-
-            for (int i = 1; i < index; i++)
-            {
-                current = current.Next;
-            }
-
-            current.Next = current.Next.Next;
-
-            Length--;
+            RemoveByIndexElements(index, 1);
         }
 
         // Удаление из конца N элементов.
@@ -269,8 +260,11 @@ namespace MyProject1
                 throw new ArgumentException("Не существует отрицательное количество элементов.");
             }
 
-
-            if(items != 0)
+            if ((index == 0) && (items == 1))
+            {
+                RemoveFirstItem();
+            }
+            else if (items != 0)
             {
                 Node tmpNext = _root;
 
@@ -289,6 +283,10 @@ namespace MyProject1
                 currtent.Next = tmpNext;
 
                 Length -= items;
+            }
+            else
+            {
+
             }
             
         }

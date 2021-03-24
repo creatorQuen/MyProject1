@@ -328,8 +328,6 @@ namespace MyProject1
         // Первый индекс по значению.
         public int GetIndexByItem(int value)
         {
-            Node node = new Node(value);
-
             Node current = _root;
 
             for (int i = 0; i < Length; i++)
@@ -346,6 +344,23 @@ namespace MyProject1
             
         }
 
+        // Изменение по индексу.
+        public void ChangeItemByIndex(int index, int value)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            Node current = _root;
+
+            for (int i = 0; i < index; i++)
+            {
+                current = current.Next;
+            }
+
+            current.Value = value;
+        }
 
 
 

@@ -226,7 +226,7 @@ namespace MyProject1
             }
         }
 
-        // Вернуть длину.
+        // Доступ по индексу. 
         public int GetByIndex(int index)
         {
             if ((index < 0) || (index > Length))

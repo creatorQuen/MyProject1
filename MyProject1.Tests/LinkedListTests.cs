@@ -126,16 +126,43 @@ namespace MyProject1.Tests
 
 
 
-        [TestCase(new int[] { 608, 77, 66, 3, -1, 0 }, new int[] { 0, -1, 3, 66, 77, 608 })]
-        [TestCase(new int[] { 3, 14, 8, -1, 0 }, new int[] { 0, -1, 8, 14, 3 })]
-        [TestCase(new int[] { 0 }, new int[] { 0 })]
-        public void ReverseItemsTests(int[] expectedArray, int[] actualArray)
+        [TestCase(0, 0, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, -1, new int[] { 0, -1 })]
+        [TestCase(3, 14, new int[] { 0, -1, 3, 14 })]
+        public void GetByIndexTests(int index, int expected, int[] actualArray)
         {
-            LinkedList expected = new LinkedList(expectedArray);
-            LinkedList actual = new LinkedList(actualArray);
-            actual.ReverseItems();
+            LinkedList arr = new LinkedList(actualArray);
+            int actual = arr.GetByIndex(index);
 
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
+        [TestCase(1, -1, new int[] { 0, -1 })]
+        [TestCase(-1, 1, new int[] { 0, -1, 3, 14 })]
+        public void GetIndexByItemTests(int value, int expected, int[] actualArray)
+        {
+            LinkedList arr = new LinkedList(actualArray);
+            int actual = arr.GetIndexByItem(value);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        //[TestCase(new int[] { 7, 6, 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5, 6, 7 })]
+        //[TestCase(new int[] { 608, 77, 66, 3, -1, 0 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        //[TestCase(new int[] { 3, 14, 8, -1, 0 }, new int[] { 0, -1, 8, 14, 3 })]
+        //[TestCase(new int[] { 0 }, new int[] { 0 })]
+        //public void ReverseItemsTests(int[] expectedArray, int[] actualArray)
+        //{
+        //    LinkedList expected = new LinkedList(expectedArray);
+        //    LinkedList actual = new LinkedList(actualArray);
+        //    actual.ReverseItems();
+
+        //    Assert.AreEqual(expected, actual);
+        //}
     }
 }

@@ -24,6 +24,13 @@ namespace MyProject1
                 //    return current;
                 //}
 
+
+                if ((index < 0) || (index > Length))
+                {
+                    throw new IndexOutOfRangeException("Индекс вне множества.");
+                }
+
+
                 // exception indexoutofrange
                 // переменная которая будет шагать по списку.
                 Node current = _root;
@@ -165,17 +172,6 @@ namespace MyProject1
         // Удаление из конца одного элемента.
         public void RemoveLastItem()
         {
-            //if()
-            //{
-            //    _tail = _root;
-            //    _root = _tail;
-            //}
-            //else
-            //{
-            //    Length--;
-            //}
-
-
             Node current  = _root;
 
             while (!(current.Next is null))
@@ -311,27 +307,57 @@ namespace MyProject1
             
         }
 
+        // Доступ по индексу. 
+        public int GetByIndex(int index)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            Node current = _root;
+
+            for (int i = 0; i < index; i++)
+            {
+                current = current.Next;
+            }
+
+            return current.Value;
+        }
+
+        // Первый индекс по значению.
+        public int GetIndexByItem(int value)
+        {
+            Node node = new Node(value);
+
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (current.Value == value)
+                {
+                    return i;
+                }
+
+                current = current.Next;
+            }
+
+            return -1;
+            
+        }
+
+
+
 
         // Реверс
         public void ReverseItems()
         {
+            Node current = _root;
 
-            if(Length != 1)
+            Node tmp = null;
+
+            if(!(current is null))
             {
-                Node current = _root;
-                
-                Node tmp = null;
-
-                while(!(_root is null))
-                {
-                    for (int i = 0; i < Length; i++)
-                    {
-                        current = current.Next;
-                    }
-                }
-
-
-
 
             }
 

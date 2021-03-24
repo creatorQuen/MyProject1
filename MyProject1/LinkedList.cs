@@ -402,6 +402,31 @@ namespace MyProject1
             return node.Value;
         }
 
+        // Поиск значения минимального элемента.
+        public int FindMinimumNumber()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            Node node = new Node(0);
+
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (node.Value > current.Value)
+                {
+                    node.Value = current.Value;
+
+                }
+
+                current = current.Next;
+            }
+
+            return node.Value;
+        }
 
         public override string ToString()
         {

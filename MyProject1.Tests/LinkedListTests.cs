@@ -196,6 +196,21 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(-12, new int[] { 0, -12, 3, 66, 77, 608 })]
+        [TestCase(-96, new int[] { 12, 0, -9, 66, 77, -96 })]
+        [TestCase(-1, new int[] { 0, -1, 0, -1, 0 })]
+        [TestCase(0, new int[] { 0 })]
+        public void FindMinimumNumberTests(int expected, int[] actualArray)
+        {
+            LinkedList arr = new LinkedList(actualArray);
+            int actual = arr.FindMinimumNumber();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
 
 
     }

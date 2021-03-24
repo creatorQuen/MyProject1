@@ -234,5 +234,21 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestCase(0, 0, new int[] { -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, -1, new int[] { 0, -1, 14, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(14, 3, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(55, 4, new int[] { 11, 22, 33, 44, 66, 77 }, new int[] { 11, 22, 33, 44, 55, 66, 77 })]
+        public void RemoveFirstByValueAndGetIndexTests(int value, int expectedIndex, int[] expectedArray, int[] actualArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList arrActual = new LinkedList(actualArray);
+            int actual = arrActual.RemoveFirstByValueAndGetIndex(value);
+
+            Assert.AreEqual(expectedIndex, actual);
+            Assert.AreEqual(expected, arrActual);
+            
+        }
     }
 }

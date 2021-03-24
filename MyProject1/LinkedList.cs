@@ -10,26 +10,12 @@ namespace MyProject1
 
         public int this[int index]
         {
-            
             get
             {
-
-                //private Node GetNodeByIndex(int index)
-                //{
-                //    Node current = _root;
-                //    for (int i = 1; i < index; i++)
-                //    {
-                //        current = current.Next;
-                //    }
-                //    return current;
-                //}
-
-
                 if ((index < 0) || (index > Length))
                 {
                     throw new IndexOutOfRangeException("Индекс вне множества.");
                 }
-
 
                 // exception indexoutofrange
                 // переменная которая будет шагать по списку.
@@ -197,7 +183,7 @@ namespace MyProject1
             Length--;
         }
 
-        // Деление по индексу одного элемента
+        // Удаление по индексу одного элемента
         public void RemoveByIndex(int index)
         {
             Node current = _root;
@@ -431,6 +417,11 @@ namespace MyProject1
         // Поиск индекс максимального элемента.
         public int FindIndexOfMaximumNumber()
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             Node node = new Node(0);
             Node current = _root;
 
@@ -464,6 +455,11 @@ namespace MyProject1
         // Поиск индекс минимального элемента.
         public int FindIndexOfMinimumNumber()
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             Node node = new Node(0);
             Node current = _root;
 
@@ -489,6 +485,46 @@ namespace MyProject1
                 }
 
                 currentVal = currentVal.Next;
+            }
+
+            return index;
+        }
+
+        // Сортировка по возрастанию.
+        public void InsertSortNumberUp()
+        {
+            //Node current = _root;
+            //int tmp = 0;
+
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    if (current.Value > current.Next.Value)
+            //    {
+            //        tmp = current.Value;
+            //        current.Next.Value = current.Value;
+            //        current.Value = 
+            //    }
+
+            //    current = current.Next;
+            //}
+        }
+
+        // Удаление по значению первого. (Вернуть индекс)
+        public int RemoveFirstByValueAndGetIndex(int value)
+        {
+            int index = GetIndexByItem(value);
+
+            if(index == 0)
+            {
+                RemoveFirstItem();
+            }
+            else if(index != -1)
+            {
+                RemoveByIndex(index);
+            }
+            else
+            {
+
             }
 
             return index;
@@ -578,5 +614,15 @@ namespace MyProject1
         {
             return base.GetHashCode();
         }
+
+        //private Node GetNodeByIndex(int index)
+        //{
+        //    Node current = _root;
+        //    for (int i = 1; i < index; i++)
+        //    {
+        //        current = current.Next;
+        //    }
+        //    return current;
+        //}
     }
 }

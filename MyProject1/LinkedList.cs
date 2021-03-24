@@ -428,6 +428,75 @@ namespace MyProject1
             return node.Value;
         }
 
+        // Поиск индекс максимального элемента.
+        public int FindIndexOfMaximumNumber()
+        {
+            Node node = new Node(0);
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if(node.Value <= current.Value)
+                {
+                    node.Value = current.Value;
+                }
+
+                current = current.Next;
+            }
+
+            Node currentVal = _root;
+            int index = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (currentVal.Value == node.Value)
+                {
+                    index = i;
+                    break;
+                }
+
+                currentVal = currentVal.Next;
+            }
+
+            return index;
+        }
+
+        // Поиск индекс минимального элемента.
+        public int FindIndexOfMinimumNumber()
+        {
+            Node node = new Node(0);
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (node.Value >= current.Value)
+                {
+                    node.Value = current.Value;
+                }
+
+                current = current.Next;
+            }
+
+            Node currentVal = _root;
+            int index = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (currentVal.Value == node.Value)
+                {
+                    index = i;
+                    break;
+                }
+
+                currentVal = currentVal.Next;
+            }
+
+            return index;
+        }
+
+
+
+
         public override string ToString()
         {
             // возращаем пустую строку

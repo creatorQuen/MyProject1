@@ -210,8 +210,29 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(5, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(4, new int[] { 12, 0, -9, 66, 77, -96 })]
+        [TestCase(0, new int[] { 0, -1, 0, -1, 0 })]
+        [TestCase(0, new int[] { 0 })]
+        public void FindIndexOfMaximumNumberTests(int expected, int[] actualArray)
+        {
+            LinkedList arr = new LinkedList(actualArray);
+            int actual = arr.FindIndexOfMaximumNumber();
+
+            Assert.AreEqual(expected, actual);
+        }
 
 
 
+        [TestCase(1, new int[] { 0, -12, 3, 66, 77, 608 })]
+        [TestCase(1, new int[] { 0, -1, 0, -1, 0 })]
+        [TestCase(0, new int[] { 0 })]
+        public void FindIndexOfMinimumNumberTests(int expected, int[] actualArray)
+        {
+            LinkedList arr = new LinkedList(actualArray);
+            int actual = arr.FindIndexOfMinimumNumber();
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

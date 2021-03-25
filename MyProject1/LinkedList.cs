@@ -17,27 +17,14 @@ namespace MyProject1
                     throw new IndexOutOfRangeException("Индекс вне множества.");
                 }
 
-                // exception indexoutofrange
-                // переменная которая будет шагать по списку.
-                Node current = _root;
-                // нулевой элемен туже внутри current
-
-                for(int i = 1; i < index; i++)
-                {
-                    current = current.Next;
-                }
+                Node current = GetNodeByIndex(index);
 
                 return current.Value;
             }
 
             set
             {
-                Node current = _root;
-
-                for (int i = 1; i < index; i++)
-                {
-                    current = current.Next;
-                }
+                Node current = GetNodeByIndex(index);
 
                 current.Value = value;
             }
@@ -136,12 +123,7 @@ namespace MyProject1
             {
                 Length++;
 
-                Node current = _root;
-
-                for (int i = 1; i < index; i++)
-                {
-                    current = current.Next;
-                }
+                Node current = GetNodeByIndex(index);
 
                 Node node = new Node(value);
 
@@ -194,12 +176,7 @@ namespace MyProject1
         {
             if (Length > 1)
             {
-                Node current = _root;
-
-                for (int i = 0; i < Length - items; i++)
-                {
-                    current = current.Next;
-                }
+                Node current = GetNodeByIndex(Length - items);
 
                 current = _tail;
                 Length -= items;
@@ -228,12 +205,7 @@ namespace MyProject1
             }
             else
             {
-                Node current = _root;
-
-                for (int i = 0; i < Length - items; i++)
-                {
-                    current = current.Next;
-                }
+                Node current = GetNodeByIndex(Length - items);
 
                 current = _root;
 
@@ -273,22 +245,14 @@ namespace MyProject1
                     tmpNext = tmpNext.Next;
                 }
 
-                Node currtent = _root;
+                Node current = GetNodeByIndex(index);
 
-                for (int i = 0; i < index - 1; i++)
-                {
-                    currtent = currtent.Next;
-                }
-
-                currtent.Next = tmpNext;
+                current.Next = tmpNext;
 
                 Length -= items;
             }
-            else
-            {
 
-            }
-            
+
         }
 
         // Доступ по индексу. 
@@ -299,12 +263,7 @@ namespace MyProject1
                 throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
-            Node current = _root;
-
-            for (int i = 0; i < index; i++)
-            {
-                current = current.Next;
-            }
+            Node current = GetNodeByIndex(index + 1);
 
             return current.Value;
         }
@@ -336,12 +295,7 @@ namespace MyProject1
                 throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
-            Node current = _root;
-
-            for (int i = 0; i < index; i++)
-            {
-                current = current.Next;
-            }
+            Node current = GetNodeByIndex(index + 1);
 
             current.Value = value;
         }
@@ -350,14 +304,17 @@ namespace MyProject1
         public void ReverseItems()
         {
             Node current = _root;
-
             Node tmp = null;
 
-            if(!(current is null))
+            while(!(current is null))
             {
-
+                Node prev = current.Next;
+                current.Next = tmp;
+                tmp = current;
+                current = prev;
             }
 
+            _root = tmp;
         }
 
         // Поиск значения максимального элемента.
@@ -407,6 +364,7 @@ namespace MyProject1
                 }
 
                 current = current.Next;
+
             }
 
             return node.Value;
@@ -520,15 +478,15 @@ namespace MyProject1
             {
                 RemoveByIndex(index);
             }
-            else
-            {
-
-            }
 
             return index;
         }
 
+        // Удаление по значению всех.(Вернуть кол-во)
+        //public int RemoveAllByValue(int value)
+        //{
 
+        //}
 
 
         public override string ToString()
@@ -613,14 +571,15 @@ namespace MyProject1
             return base.GetHashCode();
         }
 
-        //private Node GetNodeByIndex(int index)
-        //{
-        //    Node current = _root;
-        //    for (int i = 1; i < index; i++)
-        //    {
-        //        current = current.Next;
-        //    }
-        //    return current;
-        //}
+        private Node GetNodeByIndex(int index)
+        {
+            Node current = _root;
+
+            for (int i = 1; i < index; i++)
+            {
+                current = current.Next;
+            }
+            return current;
+        }
     }
 }

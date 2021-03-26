@@ -304,11 +304,25 @@ namespace MyProject1.Tests
         [TestCase(new int[] { 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608, 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(new int[] { 55, 55, 55 }, new int[] { -1, 55, 55, 55 }, new int[] { -1 })]
         [TestCase(new int[] { 55, 55, 55 }, new int[] { 55, 55, 55 }, new int[] { })]
-        public void AddArrayAtLastTests(int[] arr, int[] expectedArray, int[] actualArray)
+        public void AddListAtLastTests(int[] arr, int[] expectedArray, int[] actualArray)
         {
             LinkedList expected = new LinkedList(expectedArray);
             LinkedList actual = new LinkedList(actualArray);
             actual.AddListAtLast(arr);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11, 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11, -1 }, new int[] { -1 })]
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11 }, new int[] { })]
+        public void AddListAtFrontTests(int[] arr, int[] expectedArray, int[] actualArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.AddListAtFront(arr);
 
             Assert.AreEqual(expected, actual);
         }

@@ -532,7 +532,14 @@ namespace MyProject1
             }
         }
 
-
+        // Добавление списка в начало.
+        public void AddListAtFront(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                AddNumberAtFront(arr[i]);
+            }
+        }
 
         public override string ToString()
         {

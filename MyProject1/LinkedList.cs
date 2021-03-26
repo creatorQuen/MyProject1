@@ -447,38 +447,38 @@ namespace MyProject1
         }
 
         // Сортировка по возрастанию.
-        public void InsertSortNumberUp()
-        {
-            Node current = _root;
-            int tmp = 0;
+        //public void InsertSortNumberUp()
+        //{
+        //    Node current = _root;
+        //    int tmp = 0;
 
-            //for (int i = 1; i < Length; i++)
-            //{
-            //    if (current.Value > current.Next.Value)
-            //    {
-            //        tmp = current.Value;
-            //        current.Value = current.Next.Value;
-            //        current.Next.Value = tmp;
-
-
-
-            //    }
-
-            //    current = current.Next;
-            //}
-
-            //while(!(current is null))
-            //{
-            //    if(current.Next.Value)
+        //    //for (int i = 1; i < Length; i++)
+        //    //{
+        //    //    if (current.Value > current.Next.Value)
+        //    //    {
+        //    //        tmp = current.Value;
+        //    //        current.Value = current.Next.Value;
+        //    //        current.Next.Value = tmp;
 
 
 
-            //}
+        //    //    }
+
+        //    //    current = current.Next;
+        //    //}
+
+        //    //while(!(current is null))
+        //    //{
+        //    //    if(current.Next.Value)
+
+
+
+        //    //}
 
 
 
 
-        }
+        //}
 
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
@@ -523,7 +523,14 @@ namespace MyProject1
             return count;
         }
 
-
+        // Добавление списка(вашего самодельного) в конец.
+        public void AddListAtLast(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Add(arr[i]);
+            }
+        }
 
 
 

@@ -449,20 +449,35 @@ namespace MyProject1
         // Сортировка по возрастанию.
         public void InsertSortNumberUp()
         {
-            //Node current = _root;
-            //int tmp = 0;
+            Node current = _root;
+            int tmp = 0;
 
-            //for (int i = 0; i < Length; i++)
+            //for (int i = 1; i < Length; i++)
             //{
             //    if (current.Value > current.Next.Value)
             //    {
             //        tmp = current.Value;
-            //        current.Next.Value = current.Value;
-            //        current.Value = 
+            //        current.Value = current.Next.Value;
+            //        current.Next.Value = tmp;
+
+
+
             //    }
 
             //    current = current.Next;
             //}
+
+            //while(!(current is null))
+            //{
+            //    if(current.Next.Value)
+
+
+
+            //}
+
+
+
+
         }
 
         // Удаление по значению первого. (Вернуть индекс)
@@ -483,10 +498,33 @@ namespace MyProject1
         }
 
         // Удаление по значению всех.(Вернуть кол-во)
-        //public int RemoveAllByValue(int value)
-        //{
+        public int RemoveAllByValue(int value)
+        {
+            Node current = _root;
+            int count = 0;
 
-        //}
+            for(int i = 0; current.Next != null; i++)
+            {
+                if(current.Value == value)
+                {
+                    RemoveByIndex(i - count);
+                    count++;
+                }
+
+                current = current.Next;
+            }
+
+            if (_tail.Value == value)
+            {
+                RemoveLastItem();
+                count++;
+            }
+
+            return count;
+        }
+
+
+
 
 
         public override string ToString()

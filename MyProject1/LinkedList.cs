@@ -6,6 +6,9 @@ namespace MyProject1
 {
     public class LinkedList
     {
+        private Node _root;
+        private Node _tail;
+
         public int Length { get; private set; }
 
         public int this[int index]
@@ -30,9 +33,6 @@ namespace MyProject1
             }
         }
 
-        private Node _root;
-        private Node _tail;
-
         public LinkedList()
         {
             Length = 0;
@@ -49,7 +49,6 @@ namespace MyProject1
 
         public LinkedList(int[] values)
         {
-
             if(values is null)
             {
                 throw new NullReferenceException("На данное множество нет ссылки.");
@@ -74,7 +73,6 @@ namespace MyProject1
                 _root = null;
                 _tail = _root;
             }
-
         }
 
         // Добавление значения в конец.
@@ -134,7 +132,6 @@ namespace MyProject1
             {
                 Add(value);
             }
-
         }
 
         // Удаление из конца одного элемента.
@@ -149,7 +146,6 @@ namespace MyProject1
 
             _tail = current;
             Length--;
-
         }
 
 
@@ -211,7 +207,6 @@ namespace MyProject1
 
                 Length -= items;
             }
-
         }
 
         // Удаления по индексу N элементов.
@@ -251,8 +246,6 @@ namespace MyProject1
 
                 Length -= items;
             }
-
-
         }
 
         // Доступ по индексу. 
@@ -284,7 +277,6 @@ namespace MyProject1
             }
 
             return -1;
-            
         }
 
         // Изменение по индексу.
@@ -616,7 +608,6 @@ namespace MyProject1
                 return true;
             }
 
-
             while (!(currentThis.Next is null))
             {
                 if (currentThis.Value != currentList.Value)
@@ -626,21 +617,6 @@ namespace MyProject1
                 currentList = currentList.Next;
                 currentThis = currentThis.Next;
             }
-
-            //do
-            //{
-            //    if (currentThis.Value != currentList.Value)
-            //    {
-            //        return false;
-            //    }
-
-
-            //    currentList = currentList.Next;
-            //    currentThis = currentThis.Next;
-            //}
-            //while (!(currentThis.Next is null));
-
-
 
             if (currentList.Value != currentThis.Value)
             {
@@ -657,6 +633,11 @@ namespace MyProject1
 
         private Node GetNodeByIndex(int index)
         {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
             Node current = _root;
 
             for (int i = 1; i < index; i++)

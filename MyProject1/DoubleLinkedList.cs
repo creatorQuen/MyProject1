@@ -104,7 +104,34 @@ namespace MyProject1
             _root = node;
         }
 
+        // Добавление значения по индексу.
+        public void AddNumberByIndex(int index, int value)
+        {
+            if (index < 0)
+            {
+                throw new IndexOutOfRangeException("Не существует отрицательного индекса");
+            }
 
+            if (index == 0)
+            {
+                AddNumberAtFront(value);
+            }
+            else if (index != Length)
+            {
+                Length++;
+
+                DoubleLNode current = GetNodeByIndex(index);
+
+                DoubleLNode node = new DoubleLNode(value);
+
+                node.Next = current.Next;
+                current.Next = node;
+            }
+            else
+            {
+                Add(value);
+            }
+        }
 
 
         public override string ToString()

@@ -33,6 +33,48 @@ namespace MyProject1
             }
         }
 
+        public DoubleLinkedList()
+        {
+            Length = 0;
+            _root = null;
+            _tail = null;
+        }
+
+        public DoubleLinkedList(int value)
+        {
+            Length = 1;
+            _root = new DoLiNode(value);
+            _tail = _root;
+        }
+
+        public DoubleLinkedList(int[] values)
+        {
+            if (values is null)
+            {
+                throw new NullReferenceException("На данное множество нет ссылки.");
+            }
+
+            Length = values.Length;
+
+            if (values.Length != 0)
+            {
+                _root = new DoLiNode(values[0]);
+                _tail = _root;
+
+                for (int i = 1; i < values.Length; i++)
+                {
+                    _tail.Next = new DoLiNode(values[i]);
+                    _tail = _tail.Next;
+                }
+            }
+            else
+            {
+                _root = null;
+                _tail = _root;
+            }
+        }
+
+        
 
         public override string ToString()
         {

@@ -541,6 +541,38 @@ namespace MyProject1
             }
         }
 
+        // Добавление списка по индексу.
+        public void AddListByIndex(int index, int[] arr)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            int count = 0;
+
+            Node current = _root;
+
+            if(Length !=0)
+            {
+                while (count == index)
+                {
+                    current = current.Next;
+                    count++;
+                }
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    AddNumberByIndex(index, arr[i]);
+                    index++;
+                }
+            }
+            else
+            {
+                AddListAtFront(arr);
+            }
+        }
+
+
         public override string ToString()
         {
             // возращаем пустую строку

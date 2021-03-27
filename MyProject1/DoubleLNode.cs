@@ -4,13 +4,13 @@ using System.Text;
 
 namespace MyProject1
 {
-    public class DoLiNode
+    public class DoubleLNode
     {
         public int Value { get; set; }
-        public DoLiNode Next { get; set; }
-        public DoLiNode Previous {get; set;}
+        public DoubleLNode Next { get; set; }
+        public DoubleLNode Previous {get; set;}
 
-        public DoLiNode(int value)
+        public DoubleLNode(int value)
         {
             Value = value;
             Next = null;

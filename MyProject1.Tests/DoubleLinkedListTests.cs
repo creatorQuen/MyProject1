@@ -17,5 +17,22 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+
+
+        [TestCase(-78, new int[] { -78, 0, -1, 3 }, new int[] { 0, -1, 3 })]
+        [TestCase(14, new int[] { 14, 0, -1, 3 }, new int[] { 0, -1, 3 })]
+        [TestCase(0, new int[] { 0 }, new int[] { })]
+        public void AddNumberAtFrontTests(int value, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.AddNumberAtFront(value);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
     }
 }

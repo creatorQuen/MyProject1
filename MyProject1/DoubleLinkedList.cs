@@ -6,8 +6,8 @@ namespace MyProject1
 {
     public class DoubleLinkedList
     {
-        private DoLiNode _root;
-        private DoLiNode _tail;
+        private DoubleLNode _root;
+        private DoubleLNode _tail;
 
         public int Length { get; private set; }
 
@@ -20,14 +20,14 @@ namespace MyProject1
                     throw new IndexOutOfRangeException("Индекс вне множества.");
                 }
 
-                DoLiNode current = GetNodeByIndex(index);
+                DoubleLNode current = GetNodeByIndex(index);
 
                 return current.Value;
             }
 
             set
             {
-                DoLiNode current = GetNodeByIndex(index);
+                DoubleLNode current = GetNodeByIndex(index);
 
                 current.Value = value;
             }
@@ -43,7 +43,7 @@ namespace MyProject1
         public DoubleLinkedList(int value)
         {
             Length = 1;
-            _root = new DoLiNode(value);
+            _root = new DoubleLNode(value);
             _tail = _root;
         }
 
@@ -58,12 +58,12 @@ namespace MyProject1
 
             if (values.Length != 0)
             {
-                _root = new DoLiNode(values[0]);
+                _root = new DoubleLNode(values[0]);
                 _tail = _root;
 
                 for (int i = 1; i < values.Length; i++)
                 {
-                    _tail.Next = new DoLiNode(values[i]);
+                    _tail.Next = new DoubleLNode(values[i]);
                     _tail = _tail.Next;
                 }
             }
@@ -77,7 +77,7 @@ namespace MyProject1
         // Добавление значения в конец.
         public void Add(int value)
         {
-            DoLiNode node = new DoLiNode(value);
+            DoubleLNode node = new DoubleLNode(value);
 
             if (Length == 0)
             {
@@ -93,13 +93,27 @@ namespace MyProject1
             Length++;
         }
 
+        // Добавление значения в начало.
+        public void AddNumberAtFront(int value)
+        {
+            Length++;
+
+            DoubleLNode node = new DoubleLNode(value);
+
+            node.Next = _root;
+            _root = node;
+        }
+
+
+
+
         public override string ToString()
         {
             // возращаем пустую строку
 
             if (Length != 0)
             {
-                DoLiNode current = _root;
+                DoubleLNode current = _root;
 
                 string s = current.Value + " ";
 
@@ -127,8 +141,8 @@ namespace MyProject1
                 return false;
             }
 
-            DoLiNode currentThis = this._root;
-            DoLiNode currentList = list._root;
+            DoubleLNode currentThis = this._root;
+            DoubleLNode currentList = list._root;
             // byltrc out of range первое или последнее. 
 
             if (this.Length == 0 && list.Length == 0)
@@ -159,15 +173,15 @@ namespace MyProject1
             return base.GetHashCode();
         }
 
-        private DoLiNode GetNodeByIndex(int index)
+        private DoubleLNode GetNodeByIndex(int index)
         {
             if ((index < 0) || (index > Length))
             {
                 throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
-            DoLiNode root = _root;
-            DoLiNode tail = _tail;
+            DoubleLNode root = _root;
+            DoubleLNode tail = _tail;
 
             if (index <= Length / 2)
             {

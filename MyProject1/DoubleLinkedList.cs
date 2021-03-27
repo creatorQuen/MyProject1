@@ -74,7 +74,24 @@ namespace MyProject1
             }
         }
 
-        
+        // Добавление значения в конец.
+        public void Add(int value)
+        {
+            DoLiNode node = new DoLiNode(value);
+
+            if (Length == 0)
+            {
+                _root = node;
+                _tail = _root;
+            }
+            else
+            {
+                _tail.Next = node;
+                _tail = _tail.Next;
+            }
+
+            Length++;
+        }
 
         public override string ToString()
         {

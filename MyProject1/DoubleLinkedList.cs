@@ -197,6 +197,30 @@ namespace MyProject1
             }
         }
 
+        // Удаление из начала N элементов.
+        public void RemoveSomeItemsAtFront(int items)
+        {
+            if (items == 1)
+            {
+                RemoveFirstItem();
+            }
+            else if (Length - 1 == items)
+            {
+                for (int i = 0; i < items; i++)
+                {
+                    RemoveFirstItem();
+                }
+            }
+            else
+            {
+                DoubleLNode current = GetNodeByIndex(Length - items);
+
+                current = _root;
+                _root.Previous = null;
+                Length -= items;
+            }
+        }
+
         public override string ToString()
         {
             // возращаем пустую строку
@@ -284,7 +308,7 @@ namespace MyProject1
             }
             else
             {
-                for (int i = Length - 1 ; i <= index; i++)
+                for (int i = Length - 1 ; i >= index; i--)
                 {
                     tail = tail.Previous;
                 }

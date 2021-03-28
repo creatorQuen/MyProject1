@@ -46,5 +46,27 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestCase(new int[] { -78, 0, -1 }, new int[] { -78, 0, -1, 3 })]
+        [TestCase(new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(new int[] { 0 }, new int[] { 0, -1 })]
+        [TestCase(new int[] { }, new int[] { -1 })]
+
+        public void RemoveLastItemTests(int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.RemoveLastItem();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
     }
 }

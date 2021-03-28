@@ -108,9 +108,9 @@ namespace MyProject1
         // Добавление значения по индексу.
         public void AddNumberByIndex(int index, int value)
         {
-            if(index < 0)
+            if ((index < 0) || (index > Length))
             {
-                throw new IndexOutOfRangeException("Не существует отрицательного индекса");
+                throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
             if (index == 0)

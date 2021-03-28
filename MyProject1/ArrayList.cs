@@ -4,11 +4,10 @@ namespace MyProject1
 {
     public class ArrayList
     {
-        // Длинна массива с точки зрения клиента.
-        public int Length { get; private set; }
         // Реальный массив.
         private int[] _array;
-        private int _realLengthArr = 0;
+        // Длинна массива с точки зрения клиента.
+        public int Length { get; private set; }
 
         public int this[int index]
         {

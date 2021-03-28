@@ -64,6 +64,7 @@ namespace MyProject1
                 for (int i = 1; i < values.Length; i++)
                 {
                     _tail.Next = new DoubleLNode(values[i]);
+                    _tail.Next.Previous = _tail;
                     _tail = _tail.Next;
                 }
             }
@@ -72,6 +73,7 @@ namespace MyProject1
                 _root = null;
                 _tail = _root;
             }
+
         }
 
         // Добавление значения в конец.
@@ -87,7 +89,8 @@ namespace MyProject1
             else
             {
                 _tail.Next = node;
-                _tail = _tail.Next;
+                node.Previous = _tail;
+                _tail = node;
             }
 
             Length++;
@@ -107,9 +110,9 @@ namespace MyProject1
         // Добавление значения по индексу.
         public void AddNumberByIndex(int index, int value)
         {
-            if (index < 0)
+            if ((index < 0) || (index > Length))
             {
-                throw new IndexOutOfRangeException("Не существует отрицательного индекса");
+                throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
             if (index == 0)
@@ -132,6 +135,27 @@ namespace MyProject1
                 Add(value);
             }
         }
+
+        // Удаление из конца одного элемента.
+        public void RemoveLastItem()
+        {
+            if(_root == _tail)
+            {
+                Length = 0;
+                _root = null;
+                _tail = null;
+                
+            }
+            else
+            {
+                DoubleLNode tmp = null;
+                tmp = _tail.Previous;
+                _tail = tmp;
+                tmp.Next = null;
+                Length--;
+            }
+        }
+
 
 
         public override string ToString()

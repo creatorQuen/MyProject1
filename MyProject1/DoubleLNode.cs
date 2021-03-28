@@ -16,5 +16,12 @@ namespace MyProject1
             Next = null;
             Previous = null;
         }
+
+        public override string ToString()
+        {
+            DoubleLNode current = this;
+            string s = current.Value + "";
+            return s;
+        }
     }
 }

@@ -97,12 +97,22 @@ namespace MyProject1
         // Добавление значения в начало.
         public void AddNumberAtFront(int value)
         {
-            Length++;
 
             Node node = new Node(value);
 
-            node.Next = _root;
-            _root = node;
+            if (_root is null)
+            {
+                _root = node;
+                _tail = node;
+            }
+            else
+            {
+                node.Next = _root;
+                _root = node;
+            }
+
+            Length++;
+
         }
 
         // Добавление значения по индексу.
@@ -231,7 +241,8 @@ namespace MyProject1
             {
                 RemoveFirstItem();
             }
-            else if (items != 0)
+            else if ((items != 0) && (index < Length))
+            
             {
                 Node tmpNext = _root;
 
@@ -243,8 +254,13 @@ namespace MyProject1
                 Node current = GetNodeByIndex(index);
 
                 current.Next = tmpNext;
+                
 
                 Length -= items;
+            }
+            else if ((items != 0) && (index == Length - 1))
+            {
+                RemoveLastItem();
             }
         }
 
@@ -592,21 +608,64 @@ namespace MyProject1
 
         public override bool Equals(object obj)
         {
+            //LinkedList list = (LinkedList)obj;
+
+            //if(this.Length != list.Length)
+            //{
+            //    return false;
+            //}
+
+            //Node currentThis = this._root;
+            //Node currentList = list._root;
+            //// byltrc out of range первое или последнее. 
+
+            //if(this.Length == 0 && list.Length == 0)
+            //{
+            //    return true;
+            //}
+
+            //while (!(currentThis.Next is null))
+            //{
+            //    if (currentThis.Value != currentList.Value)
+            //    {
+            //        return false;
+            //    }
+            //    currentList = currentList.Next;
+            //    currentThis = currentThis.Next;
+            //}
+
+            //if (currentList.Value != currentThis.Value)
+            //{
+            //    return false;
+            //}
+
+            //return true;
+
+
             LinkedList list = (LinkedList)obj;
 
-            if(this.Length != list.Length)
+            if (this.Length != list.Length)
+            {
+                return false;
+            }
+
+            if (this.Length == 0)
+            {
+                return true;
+            }
+
+            if (this._tail.Value != list._tail.Value)
+            {
+                return false;
+            }
+
+            if (!(this._tail.Next is null) || !(list._tail.Next is null))
             {
                 return false;
             }
 
             Node currentThis = this._root;
             Node currentList = list._root;
-            // byltrc out of range первое или последнее. 
-            
-            if(this.Length == 0 && list.Length == 0)
-            {
-                return true;
-            }
 
             while (!(currentThis.Next is null))
             {
@@ -617,13 +676,13 @@ namespace MyProject1
                 currentList = currentList.Next;
                 currentThis = currentThis.Next;
             }
-
-            if (currentList.Value != currentThis.Value)
+            if (currentThis.Value != currentList.Value)
             {
                 return false;
             }
-
             return true;
+
+
         }
 
         public override int GetHashCode()

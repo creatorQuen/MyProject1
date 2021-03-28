@@ -14,5 +14,12 @@ namespace MyProject1
             Value = value;
             Next = null;
         }
+
+        public override string ToString()
+        {
+            Node current = this;
+            string s = current.Value + "";
+            return s;
+        }
     }
 }

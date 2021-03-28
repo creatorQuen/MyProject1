@@ -291,6 +291,25 @@ namespace MyProject1
             return current.Value;
         }
 
+        // Первый индекс по значению.
+        public int GetIndexByItem(int value)
+        {
+            DoubleLNode current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (current.Value == value)
+                {
+                    return i;
+                }
+
+                current = current.Next;
+            }
+
+            return -1;
+        }
+
+
 
         public override string ToString()
         {
@@ -319,6 +338,40 @@ namespace MyProject1
 
         public override bool Equals(object obj)
         {
+            //DoubleLinkedList list = (DoubleLinkedList)obj;
+
+            //if (this.Length != list.Length)
+            //{
+            //    return false;
+            //}
+
+            //DoubleLNode currentThis = this._root;
+            //DoubleLNode currentList = list._root;
+            //// byltrc out of range первое или последнее. 
+
+            //if (this.Length == 0 && list.Length == 0)
+            //{
+            //    return true;
+            //}
+
+            //while (!(currentThis.Next is null))
+            //{
+            //    if (currentThis.Value != currentList.Value)
+            //    {
+            //        return false;
+            //    }
+            //    currentList = currentList.Next;
+            //    currentThis = currentThis.Next;
+            //}
+
+            //if (currentList.Value != currentThis.Value)
+            //{
+            //    return false;
+            //}
+
+            //return true;
+
+
             DoubleLinkedList list = (DoubleLinkedList)obj;
 
             if (this.Length != list.Length)
@@ -326,14 +379,23 @@ namespace MyProject1
                 return false;
             }
 
-            DoubleLNode currentThis = this._root;
-            DoubleLNode currentList = list._root;
-            // byltrc out of range первое или последнее. 
-
-            if (this.Length == 0 && list.Length == 0)
+            if (this.Length == 0)
             {
                 return true;
             }
+
+            if (this._tail.Value != list._tail.Value)
+            {
+                return false;
+            }
+
+            if (!(this._tail.Next is null) || !(list._tail.Next is null))
+            {
+                return false;
+            }
+
+            DoubleLNode currentThis = this._root;
+            DoubleLNode currentList = list._root;
 
             while (!(currentThis.Next is null))
             {
@@ -345,7 +407,7 @@ namespace MyProject1
                 currentThis = currentThis.Next;
             }
 
-            if (currentList.Value != currentThis.Value)
+            if (currentThis.Value != currentList.Value)
             {
                 return false;
             }

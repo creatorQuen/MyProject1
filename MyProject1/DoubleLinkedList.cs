@@ -179,6 +179,12 @@ namespace MyProject1
             }
         }
 
+        // Удаление по индексу одного элемента
+        public void RemoveByIndex(int index)
+        {
+            RemoveByIndexElements(index, 1);
+        }
+
         // Удаление из конца N элементов.
         public void RemoveSomeItemsAtLast(int items)
         {
@@ -271,6 +277,20 @@ namespace MyProject1
             }
 
         }
+
+        // Доступ по индексу. 
+        public int GetByIndex(int index)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            DoubleLNode current = GetNodeByIndex(index + 1);
+
+            return current.Value;
+        }
+
 
         public override string ToString()
         {

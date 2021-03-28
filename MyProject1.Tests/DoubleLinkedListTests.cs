@@ -81,6 +81,21 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(0, new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
+        [TestCase(1, new int[] { 0, 14, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(3, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(0, new int[] { }, new int[] { 33 })]
+        public void RemoveByIndexTests(int index, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.RemoveByIndex(index);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
         [TestCase(0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3 })]
         [TestCase(1, new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(3, new int[] { 0 }, new int[] { 0, -1, 3, 14 })]
@@ -125,5 +140,17 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+
+
+        [TestCase(0, 0, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, -1, new int[] { 0, -1 })]
+        [TestCase(3, 14, new int[] { 0, -1, 3, 14 })]
+        public void GetByIndexTests(int index, int expected, int[] actualArray)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(actualArray);
+            int actual = arr.GetByIndex(index);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

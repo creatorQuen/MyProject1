@@ -156,7 +156,23 @@ namespace MyProject1
             }
         }
 
+        // Удаление из начала одного элемента.
+        public void RemoveFirstItem()
+        {
+            if (_root == _tail)
+            {
+                Length = 0;
+                _root = null;
+                _tail = null;
 
+            }
+            else
+            {
+                _root = _root.Next;
+                _root.Previous = null;
+                Length--;
+            }
+        }
 
         public override string ToString()
         {

@@ -159,6 +159,11 @@ namespace MyProject1
         // Удаление из начала одного элемента.
         public void RemoveFirstItem()
         {
+            if (_root == null)
+            {
+                throw new NullReferenceException("Нет ссылки на лист.");
+            }
+
             if (_root == _tail)
             {
                 Length = 0;
@@ -171,6 +176,24 @@ namespace MyProject1
                 _root = _root.Next;
                 _root.Previous = null;
                 Length--;
+            }
+        }
+
+        // Удаление из конца N элементов.
+        public void RemoveSomeItemsAtLast(int items)
+        {
+            if (Length > 1)
+            {
+                DoubleLNode current = GetNodeByIndex(Length - items);
+
+                current = _tail;
+                Length -= items;
+            }
+            else
+            {
+                _root = null;
+                _tail = null;
+                Length = 0;
             }
         }
 

@@ -81,7 +81,18 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(0, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3 })]
+        [TestCase(1, new int[] { 0, -1, 14 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(3, new int[] { 0 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(1, new int[] { }, new int[] { 0 })]
+        public void RemoveSomeItemsAtLastTests(int items, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.RemoveSomeItemsAtLast(items);
 
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }

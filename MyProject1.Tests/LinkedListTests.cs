@@ -129,6 +129,8 @@ namespace MyProject1.Tests
         [TestCase(0, 0, new int[] { 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(1, 2, new int[] { 0, 3, 5, 7 }, new int[] { 0, -1, 14, 3, 5, 7 })]
         [TestCase(3, 1, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(5, 4, new int[] { 1, 1, 1, 1, 1 }, new int[] { 1, 1, 1, 1, 1, 5, 5, 5, 5 })]
+        [TestCase(4, 3, new int[] { 2, 2, 2, 2, 2 }, new int[] { 2, 2, 2, 2, 7, 7, 7, 2 })]
         public void RemoveByIndexElementsTests(int index, int items, int[] expectedArray, int[] actualArray)
         {
             LinkedList expected = new LinkedList(expectedArray);

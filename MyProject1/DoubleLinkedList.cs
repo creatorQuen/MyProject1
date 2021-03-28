@@ -221,6 +221,57 @@ namespace MyProject1
             }
         }
 
+        // Удаления по индексу N элементов.
+        public void RemoveByIndexElements(int index, int items)
+        {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            if (Length - index < items)
+            {
+                throw new IndexOutOfRangeException("Длина множества после индекса меньше количества удаляемых элементов.");
+            }
+
+            if (items < 0)
+            {
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
+            }
+
+            if ((index == 0) && (items == 1))
+            {
+                RemoveFirstItem();
+            }
+            else if (items != 0)
+            {
+                DoubleLNode tmp = _root;
+
+                if (index + items == Length)
+                {
+                    for (int i = 0; i < index + items - 1; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < index + items; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                }
+
+                DoubleLNode current = GetNodeByIndex(index);
+
+                current.Next = tmp;
+                tmp.Previous = current;
+
+                Length -= items;
+            }
+
+        }
+
         public override string ToString()
         {
             // возращаем пустую строку

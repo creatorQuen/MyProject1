@@ -327,6 +327,21 @@ namespace MyProject1
             return -1;
         }
 
+        // Изменение по индексу.
+        public void ChangeItemByIndex(int index, int value)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            DoubleLNode current = GetNodeByIndex(index + 1);
+
+            current.Value = value;
+        }
+
+
+
 
 
         public override string ToString()

@@ -152,5 +152,35 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
+        [TestCase(1, -1, new int[] { 0, -1 })]
+        [TestCase(-1, 1, new int[] { 0, -1, 3, 14 })]
+        [TestCase(14, 0, new int[] { 14 })]
+        public void GetIndexByItemTests(int value, int expected, int[] actualArray)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(actualArray);
+            int actual = arr.GetIndexByItem(value);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestCase(0, 12, new int[] { 12, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(2, -78, new int[] { 0, -1, -78, 3 }, new int[] { 0, -1, 14, 3 })]
+        [TestCase(1, 45, new int[] { 0, 45, 3, 14 }, new int[] { 0, -1, 3, 14 })]
+        [TestCase(0, 45, new int[] { 45 }, new int[] { -1 })]
+        [TestCase(2, 33, new int[] { -1, 100, 33 }, new int[] { -1, 100, 500 })]
+        public void ChangeItemByIndexTests(int index, int value, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.ChangeItemByIndex(index, value);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

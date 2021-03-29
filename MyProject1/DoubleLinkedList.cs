@@ -99,12 +99,20 @@ namespace MyProject1
         // Добавление значения в начало.
         public void AddNumberAtFront(int value)
         {
-            Length++;
-
             DoubleLNode node = new DoubleLNode(value);
 
-            node.Next = _root;
-            _root = node;
+            if (Length == 0)
+            {
+                _root = node;
+                _tail = _root;
+            }
+            else
+            {
+                node.Next = _root;
+                _root = node;
+            }
+
+            Length++;
         }
 
         // Добавление значения по индексу.
@@ -192,7 +200,9 @@ namespace MyProject1
             {
                 DoubleLNode current = GetNodeByIndex(Length - items);
 
-                current = _tail;
+                _tail = current;
+                current.Next = null;
+
                 Length -= items;
             }
             else
@@ -249,7 +259,15 @@ namespace MyProject1
             {
                 RemoveFirstItem();
             }
-            else if (items != 0)
+            else if ((items != 0) && (items == 1) && (index == Length - 1))
+            {
+                RemoveLastItem();
+            }
+            else if ((index + items) == Length)
+            {
+                RemoveSomeItemsAtLast(items);
+            }
+            else if ((items != 0) && (index != Length - 1))
             {
                 DoubleLNode tmp = _root;
 
@@ -338,39 +356,6 @@ namespace MyProject1
 
         public override bool Equals(object obj)
         {
-            //DoubleLinkedList list = (DoubleLinkedList)obj;
-
-            //if (this.Length != list.Length)
-            //{
-            //    return false;
-            //}
-
-            //DoubleLNode currentThis = this._root;
-            //DoubleLNode currentList = list._root;
-            //// byltrc out of range первое или последнее. 
-
-            //if (this.Length == 0 && list.Length == 0)
-            //{
-            //    return true;
-            //}
-
-            //while (!(currentThis.Next is null))
-            //{
-            //    if (currentThis.Value != currentList.Value)
-            //    {
-            //        return false;
-            //    }
-            //    currentList = currentList.Next;
-            //    currentThis = currentThis.Next;
-            //}
-
-            //if (currentList.Value != currentThis.Value)
-            //{
-            //    return false;
-            //}
-
-            //return true;
-
 
             DoubleLinkedList list = (DoubleLinkedList)obj;
 
@@ -385,6 +370,11 @@ namespace MyProject1
             }
 
             if (this._tail.Value != list._tail.Value)
+            {
+                return false;
+            }
+
+            if (!(this._root.Previous is null) || !(list._root.Previous is null))
             {
                 return false;
             }

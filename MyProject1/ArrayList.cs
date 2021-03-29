@@ -489,39 +489,41 @@ namespace MyProject1
         }
 
         // Добавление списка(вашего самодельного) в конец.
-        public void AddArrayAtLast(int[] arr)
+        public void AddArrayAtLast(ArrayList arrayList)
         {
-            AddArrayByIndex(Length, arr);
+            AddArrayByIndex(Length, arrayList);
         }
 
         // Добавление списка в начало.
-        public void AddArrayAtFront(int[] arr)
+        public void AddArrayAtFront(ArrayList arrayList)
         {
-            AddArrayByIndex(0, arr);
+            AddArrayByIndex(0, arrayList);
         }
 
         // Добавление списка по индексу.
-        public void AddArrayByIndex(int index, int[] arr)
+        public void AddArrayByIndex(int index, ArrayList arrayList)
         {
             if ((index < 0) || (index > Length))
             {
                 throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
-            int oldLenght = Length;
-            Length += arr.Length;
-
-            UpSize(arr);
-
-            for(int i = oldLenght; i >= index; i--)
+            while (_array.Length <= Length + arrayList.Length)
             {
-                _array[i + arr.Length] = _array[i];
+                UpSize();
             }
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = Length - 1; i >= index; i--)
             {
-                _array[i + index] = arr[i];
+                _array[i + arrayList.Length] = _array[i];
             }
+
+            for (int i = 0; i < arrayList.Length; i++)
+            {
+                _array[i + index] = arrayList[i];
+            }
+
+            Length += arrayList.Length;
         }
 
 
@@ -577,9 +579,9 @@ namespace MyProject1
 
         }
 
-        private void UpSize(int[] arr)
+        private void UpSize(int arrL)
         {
-            int newLenght = (int)(_array.Length * 1.33d + 1 + arr.Length);
+            int newLenght = (int)(_array.Length * 1.33d + 1 + arrL);
 
             int[] tmpArray = new int[newLenght];
 

@@ -470,7 +470,8 @@ namespace MyProject1.Tests
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.AddArrayAtLast(arr);
+            ArrayList list = new ArrayList(arr);
+            actual.AddArrayAtLast(list);
 
             Assert.AreEqual(expected, actual);
         }
@@ -484,7 +485,8 @@ namespace MyProject1.Tests
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.AddArrayAtFront(arr);
+            ArrayList list = new ArrayList(arr);
+            actual.AddArrayAtFront(list);
 
             Assert.AreEqual(expected, actual);
         }
@@ -498,7 +500,8 @@ namespace MyProject1.Tests
         {
             ArrayList expected = new ArrayList(expectedArray);
             ArrayList actual = new ArrayList(actualArray);
-            actual.AddArrayByIndex(index, arr);
+            ArrayList list = new ArrayList(arr);
+            actual.AddArrayByIndex(index, list);
 
             Assert.AreEqual(expected, actual);
         }
@@ -507,8 +510,9 @@ namespace MyProject1.Tests
         public void AddArrayByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int value, int[] arr)
         {
             ArrayList expected = new ArrayList(new int[] { });
+            ArrayList list = new ArrayList(arr);
 
-            Assert.Throws<IndexOutOfRangeException>(() => expected.AddArrayByIndex(value, arr));
+            Assert.Throws<IndexOutOfRangeException>(() => expected.AddArrayByIndex(value, list));
         }
 
 

@@ -56,7 +56,7 @@ namespace MyProject1
 
             Length = values.Length;
 
-            if(values.Length != 0)
+            if (values.Length != 0)
             {
                 _root = new Node(values[0]);
                 _tail = _root;
@@ -73,6 +73,7 @@ namespace MyProject1
                 _root = null;
                 _tail = _root;
             }
+
         }
 
         // Добавление значения в конец.
@@ -112,7 +113,6 @@ namespace MyProject1
             }
 
             Length++;
-
         }
 
         // Добавление значения по индексу.
@@ -158,7 +158,6 @@ namespace MyProject1
             _tail = current;
             Length--;
         }
-
 
         // Удаление из начала одного элемента.
         public void RemoveFirstItem()
@@ -242,7 +241,7 @@ namespace MyProject1
             {
                 RemoveFirstItem();
             }
-            else if ((items != 0) && (index < Length))
+            else if ((items != 0) && (index != Length - 1))
             
             {
                 Node tmpNext = _root;
@@ -253,9 +252,7 @@ namespace MyProject1
                 }
 
                 Node current = GetNodeByIndex(index);
-
                 current.Next = tmpNext;
-                
 
                 Length -= items;
             }
@@ -312,18 +309,19 @@ namespace MyProject1
         // Реверс
         public void ReverseItems()
         {
-            Node current = _root;
+            Node current = _root.Next;
             Node tmp = null;
+            _tail = _root;
 
-            while(!(current is null))
+            while (!(_root.Next is null))
             {
-                Node prev = current.Next;
-                current.Next = tmp;
-                tmp = current;
-                current = prev;
+                _root.Next = tmp;
+                tmp = _root;
+                _root = current;
+                current = current.Next;
             }
 
-            _root = tmp;
+            _root.Next = tmp;
         }
 
         // Поиск значения максимального элемента.
@@ -369,7 +367,6 @@ namespace MyProject1
                 if (node.Value > current.Value)
                 {
                     node.Value = current.Value;
-
                 }
 
                 current = current.Next;
@@ -645,6 +642,7 @@ namespace MyProject1
 
             LinkedList list = (LinkedList)obj;
 
+            
             if (this.Length != list.Length)
             {
                 return false;
@@ -677,12 +675,13 @@ namespace MyProject1
                 currentList = currentList.Next;
                 currentThis = currentThis.Next;
             }
+
             if (currentThis.Value != currentList.Value)
             {
                 return false;
             }
-            return true;
 
+            return true;
 
         }
 

@@ -184,7 +184,9 @@ namespace MyProject1
             {
                 Node current = GetNodeByIndex(Length - items);
 
-                current = _tail;
+                _tail = current;
+                current.Next = null;
+
                 Length -= items;
             }
             else
@@ -241,6 +243,14 @@ namespace MyProject1
             {
                 RemoveFirstItem();
             }
+            else if ((items != 0) && (items == 1) && (index == Length - 1))
+            {
+                RemoveLastItem();
+            }
+            else if ((index + items) == Length)
+            {
+                RemoveSomeItemsAtLast(items);
+            }
             else if ((items != 0) && (index != Length - 1))
             
             {
@@ -256,10 +266,8 @@ namespace MyProject1
 
                 Length -= items;
             }
-            else if ((items != 0) && (index == Length - 1))
-            {
-                RemoveLastItem();
-            }
+
+
         }
 
         // Доступ по индексу. 

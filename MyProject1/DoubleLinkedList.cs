@@ -487,6 +487,22 @@ namespace MyProject1
             return index;
         }
 
+        // Удаление по значению первого. (Вернуть индекс)
+        public int RemoveFirstByValueAndGetIndex(int value)
+        {
+            int index = GetIndexByItem(value);
+
+            if (index == 0)
+            {
+                RemoveFirstItem();
+            }
+            else if (index != -1)
+            {
+                RemoveByIndex(index);
+            }
+
+            return index;
+        }
 
         public override string ToString()
         {

@@ -489,17 +489,11 @@ namespace MyProject1
 
                 current = current.Next;
             }
-
         }
 
         // Сортировка по убыванию.
         public void SortNumberDown()
         {
-            if (Length == 0)
-            {
-                throw new ArgumentException("Пустое множества.");
-            }
-
             SortNumberUp();
             ReverseItems();
         }

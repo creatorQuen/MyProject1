@@ -294,8 +294,7 @@ namespace MyProject1.Tests
             int actual = arrActual.RemoveFirstByValueAndGetIndex(value);
 
             Assert.AreEqual(expectedIndex, actual);
-            Assert.AreEqual(expected, arrActual);
-            
+            Assert.AreEqual(expected, arrActual); 
         }
 
 

@@ -542,36 +542,38 @@ namespace MyProject1
         }
 
         // Добавление списка(вашего самодельного) в конец.
-        public void AddListAtLast(int[] arr)
+        public void AddListAtLast(LinkedList list)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < list.Length; i++)
             {
-                Add(arr[i]);
+                Add(list[i]);
             }
         }
 
         // Добавление списка в начало.
-        public void AddListAtFront(int[] arr)
+        public void AddListAtFront(LinkedList list)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < list.Length; i++)
             {
-                AddNumberAtFront(arr[i]);
+                AddNumberAtFront(list[i]);
             }
         }
 
         // Добавление списка по индексу.
-        public void AddListByIndex(int index, int[] arr)
+        public void AddListByIndex(int index, LinkedList list)
         {
             if ((index < 0) || (index > Length))
             {
                 throw new IndexOutOfRangeException("Индекс вне множества.");
             }
 
+            int[] arr = list.ToArray();
+
             int count = 0;
 
             Node current = _root;
 
-            if(Length !=0)
+            if (Length != 0)
             {
                 while (count == index)
                 {
@@ -586,10 +588,27 @@ namespace MyProject1
             }
             else
             {
-                AddListAtFront(arr);
+                AddListAtFront(list);
             }
         }
 
+
+
+        public int[] ToArray()
+        {
+            int[] newArray = new int[Length];
+            Node node = _root;
+
+            int i = 0;
+
+            while (node != null)
+            {
+                newArray[i++] = node.Value;
+                node = node.Next;
+            }
+
+            return newArray;
+        }
 
         public override string ToString()
         {
@@ -682,5 +701,6 @@ namespace MyProject1
 
             return current;
         }
+
     }
 }

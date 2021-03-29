@@ -323,7 +323,8 @@ namespace MyProject1.Tests
         {
             LinkedList expected = new LinkedList(expectedArray);
             LinkedList actual = new LinkedList(actualArray);
-            actual.AddListAtLast(arr);
+            LinkedList list = new LinkedList(arr);
+            actual.AddListAtLast(list);
 
             Assert.AreEqual(expected, actual);
         }
@@ -337,7 +338,8 @@ namespace MyProject1.Tests
         {
             LinkedList expected = new LinkedList(expectedArray);
             LinkedList actual = new LinkedList(actualArray);
-            actual.AddListAtFront(arr);
+            LinkedList list = new LinkedList(arr);
+            actual.AddListAtFront(list);
 
             Assert.AreEqual(expected, actual);
         }
@@ -351,9 +353,11 @@ namespace MyProject1.Tests
         {
             LinkedList expected = new LinkedList(expectedArray);
             LinkedList actual = new LinkedList(actualArray);
-            actual.AddListByIndex(index, arr);
+            LinkedList list = new LinkedList(arr);
+            actual.AddListByIndex(index, list);
 
             Assert.AreEqual(expected, actual);
         }
+
     }
 }

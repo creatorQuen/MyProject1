@@ -504,6 +504,32 @@ namespace MyProject1
             return index;
         }
 
+        // Удаление по значению всех.(Вернуть кол-во)
+        public int RemoveAllByValue(int value)
+        {
+            DoubleLNode current = _root;
+            int count = 0;
+
+            for (int i = 0; current.Next != null; i++)
+            {
+                if (current.Value == value)
+                {
+                    RemoveByIndex(i - count);
+                    count++;
+                }
+
+                current = current.Next;
+            }
+
+            if (_tail.Value == value)
+            {
+                RemoveLastItem();
+                count++;
+            }
+
+            return count;
+        }
+
         public override string ToString()
         {
             // возращаем пустую строку

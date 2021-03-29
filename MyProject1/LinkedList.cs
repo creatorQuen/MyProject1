@@ -147,13 +147,14 @@ namespace MyProject1
         // Удаление из конца одного элемента.
         public void RemoveLastItem()
         {
-            Node current  = _root;
+            Node current = GetNodeByIndex(Length - 1);
 
-            while (!(current.Next is null))
-            {
-                current = current.Next;
-            }
+            //while (!(current.Next.Next is null))
+            //{
+            //    current = current.Next;
+            //}
 
+            current.Next = null;
             _tail = current;
             Length--;
         }
@@ -703,6 +704,7 @@ namespace MyProject1
             {
                 current = current.Next;
             }
+
             return current;
         }
     }

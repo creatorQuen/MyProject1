@@ -370,7 +370,6 @@ namespace MyProject1
             }
 
             DoubleLNode node = new DoubleLNode(0);
-
             DoubleLNode current = _root;
 
             for (int i = 0; i < Length; i++)
@@ -396,7 +395,6 @@ namespace MyProject1
             }
 
             DoubleLNode node = new DoubleLNode(0);
-
             DoubleLNode current = _root;
 
             for (int i = 0; i < Length; i++)
@@ -412,6 +410,83 @@ namespace MyProject1
 
             return node.Value;
         }
+
+        // Поиск индекс максимального элемента.
+        public int FindIndexOfMaximumNumber()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            DoubleLNode node = new DoubleLNode(0);
+            DoubleLNode current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (node.Value <= current.Value)
+                {
+                    node.Value = current.Value;
+                }
+
+                current = current.Next;
+            }
+
+            DoubleLNode currentVal = _root;
+            int index = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (currentVal.Value == node.Value)
+                {
+                    index = i;
+                    break;
+                }
+
+                currentVal = currentVal.Next;
+            }
+
+            return index;
+        }
+
+        // Поиск индекс минимального элемента.
+        public int FindIndexOfMinimumNumber()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            DoubleLNode node = new DoubleLNode(0);
+            DoubleLNode current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (node.Value >= current.Value)
+                {
+                    node.Value = current.Value;
+                }
+
+                current = current.Next;
+            }
+
+            DoubleLNode currentVal = _root;
+            int index = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (currentVal.Value == node.Value)
+                {
+                    index = i;
+                    break;
+                }
+
+                currentVal = currentVal.Next;
+            }
+
+            return index;
+        }
+
 
         public override string ToString()
         {

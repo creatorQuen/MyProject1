@@ -340,7 +340,26 @@ namespace MyProject1
             current.Value = value;
         }
 
+        // Реверс
+        public void ReverseItems()
+        {
+            DoubleLNode current = _root;
+            DoubleLNode tmp = null;
+            _tail = _root;
 
+            while (!(current is null))
+            {
+                tmp = current.Previous;
+                current.Previous = current.Next;
+                current.Next = tmp;
+                current = current.Previous;
+            }
+
+            if (tmp != null)
+            {
+                _root = tmp.Previous;
+            }
+        }
 
 
 

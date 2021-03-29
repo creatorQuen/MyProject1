@@ -182,5 +182,20 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestCase(new int[] { 7, 6, 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5, 6, 7 })]
+        [TestCase(new int[] { 608, 77, 66, 3, -1, 0 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 3, 14, 8, -1, 0 }, new int[] { 0, -1, 8, 14, 3 })]
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        public void ReverseItemsTests(int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.ReverseItems();
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

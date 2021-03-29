@@ -461,38 +461,48 @@ namespace MyProject1
         }
 
         // Сортировка по возрастанию.
-        //public void InsertSortNumberUp()
-        //{
-        //    Node current = _root;
-        //    int tmp = 0;
+        public void SortNumberUp()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
 
-        //    //for (int i = 1; i < Length; i++)
-        //    //{
-        //    //    if (current.Value > current.Next.Value)
-        //    //    {
-        //    //        tmp = current.Value;
-        //    //        current.Value = current.Next.Value;
-        //    //        current.Next.Value = tmp;
+            Node current = _root;
+            int tmp = 0;
 
+            for (int i = 0; i < Length; i++)
+            {
+                Node node = current.Next;
 
+                for (int j = i + 1; j < Length; j++)
+                {
+                    if (current.Value > node.Value)
+                    {
+                        tmp = current.Value;
+                        current.Value = node.Value;
+                        node.Value = tmp;
+                    }
 
-        //    //    }
+                    node = node.Next;
+                }
 
-        //    //    current = current.Next;
-        //    //}
+                current = current.Next;
+            }
 
-        //    //while(!(current is null))
-        //    //{
-        //    //    if(current.Next.Value)
+        }
 
+        // Сортировка по убыванию.
+        public void SortNumberDown()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
 
-
-        //    //}
-
-
-
-
-        //}
+            SortNumberUp();
+            ReverseItems();
+        }
 
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
@@ -597,7 +607,7 @@ namespace MyProject1
 
                 string s = current.Value + " ";
 
-                // смотрит на следущшийц желемент
+                // смотрит на следущшийц элемент
                 while (!(current.Next is null))
                 {
                     current = current.Next;
@@ -614,42 +624,7 @@ namespace MyProject1
 
         public override bool Equals(object obj)
         {
-            //LinkedList list = (LinkedList)obj;
-
-            //if(this.Length != list.Length)
-            //{
-            //    return false;
-            //}
-
-            //Node currentThis = this._root;
-            //Node currentList = list._root;
-            //// byltrc out of range первое или последнее. 
-
-            //if(this.Length == 0 && list.Length == 0)
-            //{
-            //    return true;
-            //}
-
-            //while (!(currentThis.Next is null))
-            //{
-            //    if (currentThis.Value != currentList.Value)
-            //    {
-            //        return false;
-            //    }
-            //    currentList = currentList.Next;
-            //    currentThis = currentThis.Next;
-            //}
-
-            //if (currentList.Value != currentThis.Value)
-            //{
-            //    return false;
-            //}
-
-            //return true;
-
-
             LinkedList list = (LinkedList)obj;
-
             
             if (this.Length != list.Length)
             {
@@ -690,7 +665,6 @@ namespace MyProject1
             }
 
             return true;
-
         }
 
         public override int GetHashCode()

@@ -254,6 +254,35 @@ namespace MyProject1.Tests
 
 
 
+        [TestCase(new int[] { -1, 0, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { -7, 0, 1, 58, 99, 100 }, new int[] { 100, 99, -7, 58, 1, 0 })]
+        [TestCase(new int[] { -1, 0, 3, 8, 14 }, new int[] { 0, -1, 8, 14, 3 })]
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        public void SortNumberUpTests(int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.SortNumberUp();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestCase(new int[] { 608, 77, 66, 3, 0, -1 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 14, 8, 3, 0, -1 }, new int[] { 0, -1, 8, 14, 3 })]
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        public void SortNumberDownTests(int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            actual.SortNumberDown();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
         [TestCase(0, 0, new int[] { -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase(1, -1, new int[] { 0, -1, 14, 3 }, new int[] { 0, -1, 14, 3 })]
         [TestCase(14, 3, new int[] { 0, -1, 3 }, new int[] { 0, -1, 3, 14 })]

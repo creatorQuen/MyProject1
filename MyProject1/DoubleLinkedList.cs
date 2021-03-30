@@ -505,6 +505,44 @@ namespace MyProject1
             return index;
         }
 
+        // Сортировка по возрастанию.
+        public void SortNumberUp()
+        {
+            SortNumberDown();
+            ReverseItems();
+        }
+
+        // Сортировка по убыванию.
+        public void SortNumberDown()
+        {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
+            DoubleLNode current = _root;
+            int tmp = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                DoubleLNode node = current.Next;
+
+                for (int j = i + 1; j < Length; j++)
+                {
+                    if (current.Value < node.Value)
+                    {
+                        tmp = current.Value;
+                        current.Value = node.Value;
+                        node.Value = tmp;
+                    }
+
+                    node = node.Next;
+                }
+
+                current = current.Next;
+            }
+        }
+
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
         {
@@ -547,7 +585,6 @@ namespace MyProject1
 
             return count;
         }
-
 
         // Добавление списка(вашего самодельного) в конец.
         public void AddListAtLast(DoubleLinkedList list)

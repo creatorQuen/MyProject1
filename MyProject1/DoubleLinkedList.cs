@@ -361,6 +361,11 @@ namespace MyProject1
         // Реверс
         public void ReverseItems()
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+
             DoubleLNode current = _root;
             DoubleLNode tmp = null;
             _tail = _root;

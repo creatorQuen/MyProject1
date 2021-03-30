@@ -47,6 +47,15 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(-1, 56)]
+        [TestCase(100, 12)]
+        public void AddNumberByIndex_UserIndexOutOfRage_ShouldIndexOutOfRangeException(int index, int value)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.AddNumberByIndex(index, value));
+        }
+
 
 
         [TestCase(new int[] { -78, 0, -1 }, new int[] { -78, 0, -1, 3 })]
@@ -92,6 +101,15 @@ namespace MyProject1.Tests
             actual.RemoveByIndex(index);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(-1)]
+        [TestCase(100)]
+        public void RemoveItemByIndex_UserIndexOutOfRage_ShouldIndexOutOfRangeException(int index)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveByIndex(index));
         }
 
 

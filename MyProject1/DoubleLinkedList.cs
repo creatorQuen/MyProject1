@@ -129,14 +129,33 @@ namespace MyProject1
             }
             else if (index != Length)
             {
-                Length++;
+                DoubleLNode currentNode = _root;
+                DoubleLNode previousNode = _root;
+                int indexThis = 0;
 
-                DoubleLNode current = GetNodeByIndex(index);
+                while (currentNode != null)
+                {
+                    if (indexThis == index)
+                    {
+                        DoubleLNode node = new DoubleLNode(value);
 
-                DoubleLNode node = new DoubleLNode(value);
+                        if (currentNode == _root)
+                        {
+                            _root = node;
+                        }
+                        else
+                        {
+                            previousNode.Next = node;
+                        }
+                        node.Next = currentNode;
+                        Length++;
 
-                node.Next = current.Next;
-                current.Next = node;
+                        return;
+                    }
+                    previousNode = currentNode;
+                    currentNode = currentNode.Next;
+                    indexThis++;
+                }
             }
             else
             {
@@ -287,7 +306,6 @@ namespace MyProject1
                 }
 
                 DoubleLNode current = GetNodeByIndex(index);
-
                 current.Next = tmp;
                 tmp.Previous = current;
 
@@ -529,6 +547,72 @@ namespace MyProject1
 
             return count;
         }
+
+
+        // Добавление списка(вашего самодельного) в конец.
+        public void AddListAtLast(DoubleLinkedList list)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                Add(list[i]);
+            }
+        }
+
+        // Добавление списка в начало.
+        public void AddListAtFront(DoubleLinkedList list)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                AddNumberAtFront(list[i]);
+            }
+        }
+
+        // Добавление списка по индексу.
+        public void AddListByIndex(int index, DoubleLinkedList list)
+        {
+            if ((index < 0) || (index > Length))
+            {
+                throw new IndexOutOfRangeException("Индекс вне множества.");
+            }
+
+            int[] arr = list.ToArray();
+            int count = 0;
+            DoubleLNode current = _root;
+
+            if (Length != 0)
+            {
+                while (count == index)
+                {
+                    current = current.Next;
+                    count++;
+                }
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    AddNumberByIndex(index, arr[i]);
+                    index++;
+                }
+            }
+            else
+            {
+                AddListAtFront(list);
+            }
+        }
+
+        public int[] ToArray()
+        {
+            int[] newArray = new int[Length];
+            DoubleLNode node = _root;
+            int i = 0;
+
+            while (node != null)
+            {
+                newArray[i++] = node.Value;
+                node = node.Next;
+            }
+
+            return newArray;
+        }
+
 
         public override string ToString()
         {

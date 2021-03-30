@@ -286,5 +286,48 @@ namespace MyProject1.Tests
         }
 
 
+
+        [TestCase(new int[] { 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608, 55, 55, 55 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 55, 55, 55 }, new int[] { -1, 55, 55, 55 }, new int[] { -1 })]
+        [TestCase(new int[] { 55, 55, 55 }, new int[] { 55, 55, 55 }, new int[] { })]
+        public void AddListAtLastTests(int[] arr, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = new DoubleLinkedList(arr);
+            actual.AddListAtLast(list);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11, 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11, -1 }, new int[] { -1 })]
+        [TestCase(new int[] { 11, 11, 11 }, new int[] { 11, 11, 11 }, new int[] { })]
+        public void AddListAtFrontTests(int[] arr, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = new DoubleLinkedList(arr);
+            actual.AddListAtFront(list);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestCase(2, new int[] { 55, 55, 55 }, new int[] { 0, -1, 55, 55, 55, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
+        [TestCase(1, new int[] { 55, 55, 55 }, new int[] { 0, 55, 55, 55, 9 }, new int[] { 0, 9 })]
+        [TestCase(0, new int[] { 55, 55, 55 }, new int[] { 55, 55, 55 }, new int[] { })]
+        public void AddListByIndexTests(int index, int[] arr, int[] expectedArray, int[] actualArray)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = new DoubleLinkedList(arr);
+            actual.AddListByIndex(index, list);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

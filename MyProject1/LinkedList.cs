@@ -147,13 +147,12 @@ namespace MyProject1
         // Удаление из конца одного элемента.
         public void RemoveLastItem()
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+
             Node current = GetNodeByIndex(Length - 1);
-
-            //while (!(current.Next.Next is null))
-            //{
-            //    current = current.Next;
-            //}
-
             current.Next = null;
             _tail = current;
             Length--;
@@ -162,9 +161,9 @@ namespace MyProject1
         // Удаление из начала одного элемента.
         public void RemoveFirstItem()
         {
-            if(_root == null)
+            if(Length == 0)
             {
-                throw new NullReferenceException("Нет ссылки на лист.");
+                throw new ArgumentException("Пустое множество.");
             }
 
             _root = _root.Next;
@@ -180,6 +179,21 @@ namespace MyProject1
         // Удаление из конца N элементов.
         public void RemoveSomeItemsAtLast(int items)
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+
+            if (Length < items)
+            {
+                throw new ArgumentException("Длина множества меньше количества удаляемых элементов.");
+            }
+
+            if (items < 0)
+            {
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
+            }
+
             if (Length > 1)
             {
                 Node current = GetNodeByIndex(Length - items);
@@ -200,6 +214,21 @@ namespace MyProject1
         // Удаление из начала N элементов.
         public void RemoveSomeItemsAtFront(int items)
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+
+            if (Length < items)
+            {
+                throw new ArgumentException("Длина множества меньше количества удаляемых элементов.");
+            }
+
+            if (items < 0)
+            {
+                throw new ArgumentException("Не существует отрицательное количество элементов.");
+            }
+
             if (items == 1)
             {
                 RemoveFirstItem();
@@ -224,6 +253,11 @@ namespace MyProject1
         // Удаления по индексу N элементов.
         public void RemoveByIndexElements(int index, int items)
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множество.");
+            }
+
             if (index > Length || index < 0)
             {
                 throw new IndexOutOfRangeException("Индекс вне множества.");
@@ -506,6 +540,11 @@ namespace MyProject1
         // Удаление по значению первого. (Вернуть индекс)
         public int RemoveFirstByValueAndGetIndex(int value)
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             int index = GetIndexByItem(value);
 
             if(index == 0)
@@ -523,6 +562,11 @@ namespace MyProject1
         // Удаление по значению всех.(Вернуть кол-во)
         public int RemoveAllByValue(int value)
         {
+            if (Length == 0)
+            {
+                throw new ArgumentException("Пустое множества.");
+            }
+
             Node current = _root;
             int count = 0;
 

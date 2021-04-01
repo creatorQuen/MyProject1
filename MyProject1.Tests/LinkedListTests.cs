@@ -73,6 +73,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { })]
+        public void RemoveLastItem_ListIsEmpty_NullReferenceException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveLastItem());
+        }
+
 
 
         [TestCase(new int[] { 0, -1, 3 }, new int[] { -78, 0, -1, 3 })]
@@ -86,6 +94,14 @@ namespace MyProject1.Tests
             actual.RemoveFirstItem();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { })]
+        public void RemoveFirstItem_ListIsEmpty_NullReferenceException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveFirstItem());
         }
 
 
@@ -127,6 +143,30 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(0)]
+        public void RemoveSomeItemsAtLast_ListIsEmpty_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtLast(items));
+        }
+
+        [TestCase(50)]
+        public void RemoveSomeItemsAtLast_ItemsMoreLength_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtLast(items));
+        }
+
+        [TestCase(-1)]
+        public void RemoveSomeItemsAtLast_NegativeItems_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtLast(items));
+        }
+
 
 
         [TestCase(0, new int[] { 0, -1, 3, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -140,6 +180,30 @@ namespace MyProject1.Tests
             actual.RemoveSomeItemsAtFront(items);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0)]
+        public void RemoveSomeItemsAtFront_ListIsEmpty_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtFront(items));
+        }
+
+        [TestCase(50)]
+        public void RemoveSomeItemsAtFront_ItemsMoreLength_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtFront(items));
+        }
+
+        [TestCase(-1)]
+        public void RemoveSomeItemsAtFront_NegativeItems_ShouldArgumentException(int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveSomeItemsAtFront(items));
         }
 
 
@@ -158,6 +222,38 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(0, 0)]
+        public void RemoveByIndexElements_ListIsEmpty_ShouldArgumentException(int index, int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
+        [TestCase(50, 3)]
+        public void RemoveByIndexElements_IndexOutOfRange_ShouldIndexOutOfRangeException(int index, int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
+        [TestCase(3, 15)]
+        public void RemoveByIndexElements_ItemsMoreLength_ShouldIndexOutOfRangeException(int index, int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
+        [TestCase(2, -1)]
+        public void RemoveByIndexElements_NegativeItems_ShouldArgumentException(int index, int items)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveByIndexElements(index, items));
+        }
+
 
 
         [TestCase(0, 0, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -171,6 +267,13 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(50)]
+        public void GetByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int index)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.GetByIndex(index));
+        }
 
 
         [TestCase(66, 3, new int[] { 0, -1, 3, 66, 77, 66 })]
@@ -201,6 +304,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(50, 14)]
+        public void ChangeItemByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int index, int value)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.ChangeItemByIndex(index, value));
+        }
+
 
 
         [TestCase(new int[] { 7, 6, 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5, 6, 7 })]
@@ -216,6 +327,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { })]
+        public void ReverseItems_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.ReverseItems());
+        }
+
 
 
         [TestCase(608, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -227,6 +346,14 @@ namespace MyProject1.Tests
             int actual = arr.FindMaximumNumber();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { })]
+        public void FindMaximumNumber_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.FindMaximumNumber());
         }
 
 
@@ -243,6 +370,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { })]
+        public void FindMinimumNumber_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.FindMinimumNumber());
+        }
+
 
 
         [TestCase(5, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -257,6 +392,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { })]
+        public void FindIndexOfMaximumNumber_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.FindIndexOfMaximumNumber());
+        }
+
 
 
         [TestCase(1, new int[] { 0, -12, 3, 66, 77, 608 })]
@@ -268,6 +411,14 @@ namespace MyProject1.Tests
             int actual = arr.FindIndexOfMinimumNumber();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { })]
+        public void FindIndexOfMinimumNumber_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.FindIndexOfMinimumNumber());
         }
 
 
@@ -285,6 +436,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { })]
+        public void SortNumberUp_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.SortNumberUp());
+        }
+
 
 
         [TestCase(new int[] { 608, 77, 66, 3, 0, -1 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -297,6 +456,14 @@ namespace MyProject1.Tests
             actual.SortNumberDown();
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { })]
+        public void SortNumberDown_ListIsEmpty_ShouldArgumentException(int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.SortNumberDown());
         }
 
 
@@ -315,6 +482,14 @@ namespace MyProject1.Tests
             Assert.AreEqual(expected, arrActual); 
         }
 
+        [TestCase(new int[] { }, 3)]
+        public void RemoveFirstByValueAndGetIndex_ListIsEmpty_ShouldArgumentException(int[] expectedArray, int value)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveFirstByValueAndGetIndex(value));
+        }
+
 
 
         [TestCase(3, 1, new int[] { 0, -1, 66, 77, 608 }, new int[] { 0, -1, 3, 66, 77, 608 })]
@@ -330,6 +505,14 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, arrActual);
             Assert.AreEqual(expectedValue, actual);
+        }
+
+        [TestCase(new int[] { }, 10)]
+        public void RemoveAllByValue_ListIsEmpty_ShouldArgumentException(int[] expectedArray, int value)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+
+            Assert.Throws<ArgumentException>(() => expected.RemoveAllByValue(value));
         }
 
 
@@ -376,6 +559,16 @@ namespace MyProject1.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(50, new int[] { 14 })]
+        public void AddListByIndex_IndexOutOfRange_ShouldIndexOutOfRangeException(int index, int[] listArray)
+        {
+            LinkedList expected = new LinkedList(new int[] { 0, -1, 3, 14 });
+            LinkedList list = new LinkedList(listArray);
+
+            Assert.Throws<IndexOutOfRangeException>(() => expected.AddListByIndex(index, list));
+        }
+
 
     }
 }

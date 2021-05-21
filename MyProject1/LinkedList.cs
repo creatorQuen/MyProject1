@@ -570,15 +570,30 @@ namespace MyProject1
             Node current = _root;
             int count = 0;
 
-            for(int i = 0; current.Next != null; i++)
+
+            if (_root.Value == value)
             {
-                if(current.Value == value)
+                RemoveFirstItem();
+                count++;
+            }
+
+            for (int i = 0; current.Next != null; i++)
+            {
+                if (current.Next.Value == value || current.Next.Value == value)
                 {
-                    RemoveByIndex(i - count);
-                    count++;
+
+                    if (current.Next.Next != null)
+                    {
+                        current.Next = current.Next.Next;
+                        count++;
+                        Length--;
+                        continue;
+                    }
+
                 }
 
                 current = current.Next;
+
             }
 
             if (_tail.Value == value)
@@ -586,6 +601,7 @@ namespace MyProject1
                 RemoveLastItem();
                 count++;
             }
+
 
             return count;
         }

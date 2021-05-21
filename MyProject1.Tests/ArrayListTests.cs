@@ -268,6 +268,9 @@ namespace MyProject1.Tests
 
         [TestCase(new int[] { 608, 77, 66, 3, -1, 0 }, new int[] { 0, -1, 3, 66, 77, 608 })]
         [TestCase( new int[] { 3, 14, 8, -1, 0 }, new int[] { 0, -1, 8, 14, 3 })]
+
+        [TestCase( new int[] { 0, 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1, 0 })]
+
         [TestCase(new int[] { 0 }, new int[] { 0 })]
         public void ReverseItemsTests(int[] expectedArray, int[] actualArray)
         {

@@ -269,23 +269,41 @@ namespace MyProject1
                 throw new ArgumentException("Пустое множество.");
             }
             // Вопрос про длинну.
-            int[] arrayTmp = new int[Length];
+            //int[] arrayTmp = new int[Length];
 
-            for (int i = 0; i < Length; i++)
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    arrayTmp[i] = _array[i];
+            //}
+
+            //for (int i = 0; i < (arrayTmp.Length / 2); i++)
+            //{
+            //    int index = arrayTmp.Length - i - 1;
+            //    int tmp = arrayTmp[i];
+
+            //    arrayTmp[i] = arrayTmp[index];
+            //    arrayTmp[index] = tmp;
+            //}
+
+            //_array = arrayTmp;
+
+           // int tmp1 = _array[0];
+            //int tmp2 = _array[0];
+
+            int tmp = 0;
+
+            for (int i = 0; i < (_array.Length/2) - 1; i++)
             {
-                arrayTmp[i] = _array[i];
+                tmp = _array[i];
+
+                _array[i] = _array[Length - i - 1];
+
+                _array[Length - i - 1] = tmp;
             }
 
-            for (int i = 0; i < (arrayTmp.Length / 2); i++)
-            {
-                int index = arrayTmp.Length - i - 1;
-                int tmp = arrayTmp[i];
 
-                arrayTmp[i] = arrayTmp[index];
-                arrayTmp[index] = tmp;
-            }
 
-            _array = arrayTmp;
+
         }
 
         // Поиск значения максимального элемента.
